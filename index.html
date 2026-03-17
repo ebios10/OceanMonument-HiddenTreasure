@@ -34,6 +34,10 @@
   --glow-cyan:0 0 12px rgba(58,184,212,0.4);
   --glow-red:0 0 12px rgba(192,57,43,0.5);
   --btn-border: #c0392b;
+  --btn-bg: transparent;
+  --btn-text: #ccdde8;
+  --btn-radius: 6px;
+  --btn-bw: 2px;
 }
 html,body{height:100%;overflow:hidden;}
 body{
@@ -67,23 +71,20 @@ body::before{
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
   padding:9px 22px;
-  border:2px solid var(--btn-border);background:transparent;
-  color:var(--text2);
-  font-family:'Noto Sans JP',sans-serif;font-size:.8rem;font-weight:500;
-  cursor:pointer;transition:all .2s;position:relative;overflow:hidden;
+  border:var(--btn-bw) solid var(--btn-border);background:var(--btn-bg);
+  color:var(--btn-text);
+  font-family:'Noto Sans JP',sans-serif;font-size:.8rem;font-weight:700;
+  border-radius:var(--btn-radius);cursor:pointer;white-space:nowrap;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   letter-spacing:.05em;-webkit-appearance:none;
 }
-.btn::after{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s;}
-.btn:hover:not(:disabled){color:var(--gold2);font-weight:700;background:rgba(200,168,75,.07);}
-.btn:hover:not(:disabled)::after{opacity:.04;}
+.btn:hover:not(:disabled){box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;}
 .btn:active{transform:scale(.97);}
-.btn:disabled{opacity:.3;cursor:not-allowed;}
-.btn:disabled:hover::after{opacity:0;}
-.btn-gold{color:var(--text2);}
-.btn-cyan{color:var(--text2);}
-.btn-red{color:var(--text2);}
-.btn-green{color:var(--text2);}
-.btn-ghost{color:var(--text3);}
+.btn:disabled{opacity:.35;cursor:not-allowed;}
+/* .btn-gold/.btn-cyan/.btn-red/.btn-green — all use base .btn style via CSS variables */
+.btn-gold,.btn-cyan,.btn-red,.btn-green{}
+.btn-ghost{background:var(--panel2);border-color:var(--border2);color:var(--text2);}
 .btn-sm{padding:5px 12px;font-size:.72rem;}
 .btn-lg{padding:13px 40px;font-size:.95rem;}
 
@@ -230,14 +231,16 @@ body::before{
   display:flex;align-items:center;gap:10px;
 }
 .count-btn{
-  width:34px;height:34px;border:2px solid var(--btn-border);
-  background:var(--panel);color:var(--text2);
-  font-size:1.1rem;cursor:pointer;
+  width:34px;height:34px;border:var(--btn-bw) solid var(--btn-border);
+  background:var(--btn-bg);color:var(--btn-text);
+  font-size:1.1rem;font-weight:700;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  transition:all .18s;
+  border-radius:var(--btn-radius);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   flex-shrink:0;
 }
-.count-btn:hover{border-color:var(--gold2);color:var(--gold2);font-weight:700;}
+.count-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.45);color:#fff;}
 .count-btn:disabled{opacity:.25;cursor:not-allowed;}
 .count-display{
   font-family:'Cinzel',serif;font-size:1.6rem;
@@ -288,13 +291,13 @@ body::before{
   overflow:hidden;flex-shrink:0;
 }
 .slot-type-btn{
-  padding:3px 10px;font-size:.68rem;cursor:pointer;
-  background:transparent;border:none;color:var(--text3);
-  transition:all .15s;
+  padding:3px 10px;font-size:.68rem;font-weight:700;cursor:pointer;
+  background:var(--panel2);border:none;color:var(--text3);
+  transition:box-shadow .15s,color .15s,background .15s;
 }
-.slot-type-btn:hover{color:var(--gold2);font-weight:700;}
-.slot-type-btn.active-human{background:rgba(58,184,212,.12);color:var(--cyan);}
-.slot-type-btn.active-ai{background:rgba(58,184,212,.12);color:var(--cyan);}
+.slot-type-btn:hover{background:var(--border2);color:var(--text);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);}
+.slot-type-btn.active-human{background:var(--btn-border);color:#000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);}
+.slot-type-btn.active-ai{background:var(--btn-border);color:#000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);}
 
 /* Icon picker */
 .icon-area{
@@ -304,12 +307,14 @@ body::before{
   font-size:1.6rem;cursor:pointer;
   width:42px;height:42px;
   border:2px solid var(--btn-border);
-  background:var(--deep);
+  background:transparent;
   display:flex;align-items:center;justify-content:center;
-  transition:border-color .2s;
+  border-radius:6px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.10);
+  transition:box-shadow .15s,border-color .15s;
   flex-shrink:0;
 }
-.icon-pick-btn:hover{border-color:var(--gold2);}
+.icon-pick-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.45);}
 .slot-name-input{
   flex:1;min-width:0;
   background:var(--deep);border:1px solid var(--border2);
@@ -325,14 +330,16 @@ body::before{
   display:flex;gap:5px;
 }
 .ai-lvl-btn{
-  flex:1;padding:4px 0;font-size:.68rem;
-  border:2px solid var(--btn-border);
-  background:transparent;color:var(--text3);
-  cursor:pointer;transition:all .15s;
+  flex:1;padding:4px 0;font-size:.68rem;font-weight:700;
+  border:var(--btn-bw) solid var(--btn-border);
+  background:var(--panel2);color:var(--text3);
+  cursor:pointer;border-radius:var(--btn-radius);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.1);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   text-align:center;
 }
-.ai-lvl-btn:hover{border-color:var(--gold2);color:var(--gold2);font-weight:700;}
-.ai-lvl-btn.active{border-color:var(--btn-border);color:var(--text);font-size:.82rem;font-weight:700;background:rgba(192,57,43,.08);}
+.ai-lvl-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.3);border-color:rgba(255,255,255,.4);color:#fff;}
+.ai-lvl-btn.active{background:var(--btn-border);color:#000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);font-size:.82rem;}
 
 /* Icon picker popup */
 .icon-popup{
@@ -357,24 +364,26 @@ body::before{
   transition:all .15s;
   border-radius:2px;
 }
-.icon-opt:hover{border-color:var(--gold);background:rgba(200,168,75,.1);}
-.icon-opt.selected{border-color:var(--gold);background:rgba(200,168,75,.15);}
+.icon-opt:hover{border-color:var(--btn-border);background:rgba(255,255,255,.08);}
+.icon-opt.selected{border-color:var(--btn-border);background:rgba(255,255,255,.12);}
 
 /* Turn order */
 .turn-order-row{
   display:flex;gap:8px;align-items:center;
 }
 .turn-order-btn{
-  padding:7px 20px;font-size:.78rem;
-  border:2px solid var(--btn-border);
-  background:transparent;color:var(--text3);
-  cursor:pointer;transition:all .18s;
+  padding:7px 20px;font-size:.78rem;font-weight:700;
+  border:var(--btn-bw) solid var(--btn-border);
+  background:var(--panel2);color:var(--text3);
+  border-radius:var(--btn-radius);cursor:pointer;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.1);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
 }
-.turn-order-btn:hover{color:var(--gold2);font-weight:700;}
+.turn-order-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.3);border-color:rgba(255,255,255,.4);color:#fff;}
 .turn-order-btn.active{
-  border-color:var(--btn-border);color:var(--text);
-  font-size:.92rem;font-weight:700;
-  background:rgba(192,57,43,.08);
+  background:var(--btn-border);color:#000;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);
+  font-size:.92rem;
 }
 .turn-order-desc{
   font-size:.72rem;color:var(--text3);
@@ -417,6 +426,49 @@ body::before{
   background:radial-gradient(ellipse at center,rgba(255,230,100,.75) 0%,rgba(200,140,0,.25) 35%,transparent 68%);
   animation:relic-radiate 2.4s ease-out forwards;
 }
+@keyframes triumph-pulse{
+  0%,100%{box-shadow:0 0 12px 4px rgba(255,215,0,.6),0 0 28px 8px rgba(255,215,0,.25);}
+  50%{box-shadow:0 0 28px 12px rgba(255,215,0,1),0 0 60px 24px rgba(255,200,0,.5);}
+}
+@keyframes gold-shimmer{
+  0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}
+}
+@keyframes relic-title-in{
+  0%{opacity:0;transform:scale(.5) translateY(30px);}
+  65%{opacity:1;transform:scale(1.06);}
+  100%{opacity:1;transform:scale(1);}
+}
+@keyframes relic-desc-in{
+  0%{opacity:0;transform:translateY(16px);}
+  100%{opacity:1;transform:translateY(0);}
+}
+.cbt-hd-main-btn.relic-triumph{
+  background:linear-gradient(135deg,#ffe066,#ffaa00,#ffd700,#ffcc00,#ffe066);
+  background-size:300% 300%;
+  animation:triumph-pulse 1.4s ease-in-out infinite,gold-shimmer 2.5s ease infinite;
+  font-size:1.15rem;padding:8px 26px;border:2px solid #ffd700;color:#000;
+}
+.relic-result-title{
+  font-size:1.8rem;font-weight:900;
+  color:var(--gold2);
+  text-shadow:0 0 20px rgba(255,215,0,.9),0 0 40px rgba(255,180,0,.5);
+  animation:relic-title-in .9s cubic-bezier(.34,1.56,.64,1) both;
+  line-height:1.2;
+}
+.relic-result-subtitle{
+  font-size:1rem;color:var(--cyan2);margin-top:8px;
+  text-shadow:0 0 10px rgba(58,184,212,.7);
+  animation:relic-desc-in .7s .4s ease both;
+}
+.relic-result-vp{
+  font-size:1.1rem;font-weight:800;color:var(--gold2);margin-top:6px;
+  animation:relic-desc-in .7s .7s ease both;
+}
+.relic-overlay-bg{
+  position:fixed;inset:0;z-index:960;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 60%,rgba(255,200,0,.18) 0%,rgba(30,10,60,.55) 60%,rgba(0,0,0,.7) 100%);
+  animation:relic-desc-in .6s ease both;
+}
 
 .overlay{
   position:fixed;inset:0;z-index:300;
@@ -448,13 +500,14 @@ body::before{
   margin-bottom:16px;letter-spacing:.1em;flex-shrink:0;
 }
 .modal-close{
-  position:absolute;top:12px;right:14px;
-  background:none;border:2px solid var(--btn-border);
-  color:var(--text3);font-size:.75rem;
+  position:absolute;top:12px;right:14px;border-radius:6px;
+  background:var(--panel2);border:2px solid var(--border2);
+  color:var(--text2);font-size:.75rem;font-weight:700;
   padding:3px 8px;cursor:pointer;
-  transition:all .15s;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.1);
+  transition:box-shadow .15s,border-color .15s,color .15s;
 }
-.modal-close:hover{color:var(--gold2);font-weight:700;border-color:var(--gold2);}
+.modal-close:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.3);border-color:rgba(255,255,255,.4);color:#fff;}
 
 /* Rules content */
 .rules-body{font-size:.78rem;line-height:1.9;color:var(--text2);}
@@ -483,14 +536,16 @@ body::before{
   margin-bottom:12px;flex-shrink:0;
 }
 .rules-tab{
-  padding:6px 14px;font-size:.73rem;
-  background:transparent;border:none;
+  padding:6px 14px;font-size:.73rem;font-weight:700;
+  background:var(--panel2);border:2px solid var(--border2);
   color:var(--text3);cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:all .15s;
+  border-radius:6px 6px 0 0;border-bottom:none;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.08);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   font-family:'Noto Sans JP',sans-serif;
 }
-.rules-tab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+.rules-tab:hover:not(.active){box-shadow:inset 0 0 0 1000px rgba(0,0,0,.2),inset 0 0 0 2px rgba(255,255,255,.2);color:#fff;}
+.rules-tab.active{background:var(--btn-border);border-color:var(--btn-border);color:#000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);}
 .rules-tab-content{display:none;}
 .rules-tab-content.active{display:block;flex:1;overflow-y:auto;padding-bottom:20px;}
 
@@ -575,6 +630,18 @@ body::before{
 .sett-save-notice {
   font-size:.65rem; color:var(--text3); padding:4px 0;
 }
+.sett-opt-row {
+  display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;
+}
+.sett-opt-sub-label {
+  font-size:.65rem; color:var(--text3); margin-top:8px; margin-bottom:2px;
+}
+.sett-sel-btn.sett-sel-active {
+  background:var(--btn-border) !important;
+  color:#000 !important;
+  border-color:var(--btn-border) !important;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.25) !important;
+}
 
 /* ================================================================
    GAME SCREEN — Step 4
@@ -645,10 +712,11 @@ body::before{
   background:var(--deep); border-bottom:1px solid var(--border);
   min-height:56px;
 }
-/* Action bar inline event display */
+/* ラウンドイベントバー（マウスオーバーの下・手札の上） */
 .g-action-event {
   display:flex; align-items:center; gap:10px;
-  flex:1; min-width:200px;
+  padding:5px 14px; flex-shrink:0;
+  background:rgba(58,184,212,.06); border-bottom:1px solid var(--border);
 }
 .g-action-event-icon { font-size:1.7rem; flex-shrink:0; line-height:1; }
 .g-action-event-body { display:flex; flex-direction:column; gap:3px; }
@@ -659,33 +727,40 @@ body::before{
 .g-action-event-none { font-size:.65rem; color:var(--text3); white-space:nowrap; }
 .g-action-btn {
   display:flex; align-items:center; gap:7px;
-  padding:10px 22px; font-size:.9rem;
-  border:2px solid var(--btn-border); background:transparent;
-  color:var(--text2); cursor:pointer; transition:all .18s;
+  padding:10px 22px; font-size:.9rem; font-weight:700;
+  border:var(--btn-bw) solid var(--btn-border); background:var(--btn-bg);
+  color:var(--btn-text); cursor:pointer;
+  border-radius:var(--btn-radius);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   font-family:'Noto Sans JP',sans-serif; white-space:nowrap;
   flex-shrink:0;
 }
-.g-action-btn:hover:not(:disabled) { border-color:var(--gold2); color:var(--gold2); font-weight:700; background:rgba(200,168,75,.07); }
-.g-action-btn.g-action-active { border-color:var(--cyan); color:var(--cyan); background:rgba(58,184,212,.08); }
+.g-action-btn:hover:not(:disabled) { box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35); border-color:rgba(255,255,255,.5); color:#fff; }
+.g-action-btn.g-action-active { background:var(--btn-border); border-color:var(--btn-border); color:#000; box-shadow:inset 0 0 0 2px rgba(255,255,255,.22); }
 .g-action-btn:disabled { opacity:.3; cursor:not-allowed; }
 .g-action-sep { width:1px; height:36px; background:var(--border); margin:0 4px; flex-shrink:0; }
 .g-deck-btn {
   display:flex; align-items:center; gap:5px;
   padding:4px 12px; font-size:.7rem;
-  border:2px solid var(--btn-border); background:transparent;
-  color:var(--text3); cursor:pointer; transition:all .15s;
-  font-family:'Noto Sans JP',sans-serif; white-space:nowrap;
+  border:var(--btn-bw) solid var(--btn-border); background:var(--btn-bg);
+  color:var(--btn-text); border-radius:var(--btn-radius); cursor:pointer;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
+  font-family:'Noto Sans JP',sans-serif; white-space:nowrap; font-weight:700;
 }
-.g-deck-btn:hover { border-color:var(--gold2); color:var(--gold2); font-weight:700; }
+.g-deck-btn:hover { box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35); border-color:rgba(255,255,255,.5); color:#fff; }
 #g-end-turn {
   margin-left:auto; flex-shrink:0;
   padding:5px 18px; font-size:.75rem;
-  border:2px solid var(--btn-border); color:var(--text2);
-  background:transparent; cursor:pointer;
+  border:var(--btn-bw) solid var(--btn-border); background:var(--btn-bg);
+  color:var(--btn-text); border-radius:var(--btn-radius); cursor:pointer;
   font-family:'Noto Sans JP',sans-serif;
-  transition:all .18s; white-space:nowrap;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
+  white-space:nowrap; font-weight:700;
 }
-#g-end-turn:hover { color:var(--gold2); font-weight:700; background:rgba(200,168,75,.07); }
+#g-end-turn:hover { box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35); border-color:rgba(255,255,255,.5); color:#fff; }
 
 /* Main area */
 .g-main {
@@ -728,24 +803,25 @@ body::before{
 
 /* Temple phase panel */
 .temple-phase-panel { display:flex; flex-direction:column; gap:8px; width:100%; }
-.temple-combat-bar { display:flex; align-items:center; gap:6px; flex-wrap:wrap; padding:5px 8px; background:rgba(11,15,23,.6); border:1px solid var(--border); font-size:.7rem; }
-.tbar-item { display:flex; align-items:center; gap:3px; }
-.tbar-val { font-weight:700; color:var(--text); }
+.temple-combat-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:8px 12px; background:rgba(11,15,23,.6); border:1px solid var(--border); border-radius:6px; font-size:.9rem; }
+.tbar-item { display:flex; align-items:center; gap:4px; }
+.tbar-val { font-weight:800; font-size:1.4rem; line-height:1; color:var(--text); }
 .tbar-val.red { color:var(--red2); }
 .tbar-val.gold { color:var(--cyan2); }
-.tbar-sep { color:var(--text3); margin:0 2px; }
+.tbar-sep { color:var(--text3); margin:0 3px; font-size:1.1rem; }
 .temple-instruction { font-size:.68rem; color:var(--cyan2); }
 .temple-no-explorer { font-size:.7rem; color:var(--red2); padding:4px 0; }
-.temple-exp-row { display:flex; flex-direction:row; gap:8px; flex-wrap:wrap; }
-.temple-exp-col { display:flex; flex-direction:column; gap:4px; padding:6px 8px; border:1px solid var(--border); background:var(--deep); cursor:pointer; min-width:90px; transition:border-color .15s; }
+.temple-exp-row { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.temple-exp-col { display:flex; flex-direction:row; align-items:flex-start; gap:12px; padding:8px 10px; border:1px solid var(--border); background:var(--deep); cursor:pointer; transition:border-color .15s; border-radius:6px; }
 .temple-exp-col:hover { border-color:var(--border2); }
 .temple-exp-col.selected { border-color:var(--gold); background:rgba(200,168,75,.06); }
-.temple-exp-load { font-size:.58rem; color:var(--text3); }
-.temple-slots { display:flex; flex-direction:column; gap:2px; width:100%; margin-top:2px; }
-.temple-slot { display:flex; align-items:center; gap:4px; padding:2px 4px; border-radius:2px; font-size:.58rem; border:1px solid transparent; }
+.temple-exp-card-sec { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; }
+.temple-exp-load { font-size:.65rem; color:var(--text2); text-align:center; }
+.temple-slots { display:flex; flex-direction:column; gap:4px; flex:1; align-self:center; }
+.temple-slot { display:flex; align-items:center; gap:6px; padding:4px 6px; border-radius:4px; font-size:.68rem; border:1px solid transparent; }
 .temple-slot.filled { background:rgba(200,168,75,.07); border-color:var(--border); }
 .temple-slot.empty  { border-color:var(--border); opacity:.45; }
-.temple-slot-label  { color:var(--text3); flex-shrink:0; min-width:26px; }
+.temple-slot-label  { color:var(--text3); flex-shrink:0; min-width:32px; }
 .temple-slot-name   { color:var(--text2); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .temple-slot-empty  { color:var(--text3); flex:1; font-style:italic; }
 .temple-unassign-btn { flex-shrink:0; padding:0 3px; font-size:.52rem; background:rgba(192,57,43,.15); border:1px solid var(--red2); color:var(--red2); cursor:pointer; border-radius:2px; line-height:1.4; }
@@ -768,6 +844,115 @@ body::before{
 .temple-result-card { display:flex; flex-direction:row; gap:8px; flex-wrap:wrap; align-items:flex-start; margin-top:4px; }
 .temple-next-card { display:flex; flex-direction:column; gap:3px; align-items:center; }
 .temple-next-label { font-size:.58rem; color:var(--text3); }
+
+/* ===== COMBAT SCREEN ===== */
+#screen-combat{display:none;flex-direction:column;height:100vh;background:var(--ink);}
+#screen-combat.active{display:flex;}
+#cbt-turnbar{display:flex;align-items:center;background:var(--panel);border-bottom:1px solid var(--border);min-height:36px;overflow:hidden;flex-shrink:0;font-size:.68rem;color:var(--cyan2);padding:0 14px;font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+#cbt-main{display:flex;flex:1;overflow:hidden;gap:0;}
+#cbt-content{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+#cbt-log{width:220px;min-width:180px;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--panel2);}
+#cbt-header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--panel);border:1px solid var(--border);border-radius:8px;}
+.cbt-player-icon{font-size:1.8rem;}
+.cbt-player-name{font-size:1rem;font-weight:700;color:var(--text);}
+.cbt-floor-badge{font-size:.85rem;color:var(--text2);background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;}
+.cbt-back-btn{margin-left:8px;}
+.cbt-hd-main-btn{margin-left:10px;padding:6px 18px;font-size:1rem;font-weight:700;background:var(--btn-bg);color:var(--btn-text);border:var(--btn-bw) solid var(--btn-border);border-radius:var(--btn-radius);cursor:pointer;white-space:nowrap;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:box-shadow .15s,border-color .15s,color .15s,background .15s;}
+.cbt-hd-main-btn:hover:not(.relic-triumph){box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;}
+.cbt-hd-main-btn:focus{outline:2px solid var(--btn-border);outline-offset:2px;}
+.cbt-hd-main-btn:disabled{background:var(--border2);border-color:var(--border2);color:var(--text3);cursor:not-allowed;}
+/* Combat result layout */
+.cbt-result-wrap{display:flex;flex-direction:column;gap:16px;}
+.cbt-result-main-row{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;}
+.cbt-result-right-col{display:flex;flex-direction:column;gap:16px;}
+.cbt-result-explorers{display:flex;flex-direction:column;gap:8px;padding:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;}
+.cbt-result-explorers-label{font-size:.65rem;color:var(--text3);margin-bottom:2px;}
+.cbt-result-explorers-cards{display:grid;grid-template-columns:repeat(4,auto);gap:8px;}
+/* Card flip */
+.cbt-flip-container{perspective:1000px;display:inline-block;}
+.cbt-flipper{transition:transform 2.2s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;position:relative;display:grid;}
+.cbt-flipper.flipped{transform:rotateY(180deg);}
+.cbt-flipper-back{grid-area:1/1;display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.cbt-flipper-front{grid-area:1/1;display:block;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+/* Result bottom section */
+.cbt-result-bottom{display:flex;flex-direction:column;gap:10px;transition:opacity .5s ease;}
+.cbt-result-bottom.cbt-hidden{opacity:0;pointer-events:none;}
+
+/* ===== PORT SCREEN ===== */
+#screen-port{display:none;flex-direction:column;height:100vh;background:var(--ink);}
+#screen-port.active{display:flex;}
+#port-turnbar{display:flex;align-items:center;background:var(--panel);border-bottom:1px solid var(--border);min-height:36px;overflow:hidden;flex-shrink:0;font-size:.68rem;color:var(--cyan2);padding:0 14px;font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+#port-main{display:flex;flex:1;overflow:hidden;}
+#port-content{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
+#port-info{width:200px;min-width:160px;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--panel2);}
+#port-info-body{flex:1;overflow-y:auto;padding:10px;}
+.port-info-placeholder{color:var(--text3);font-size:.72rem;line-height:1.5;padding-top:4px;}
+.port-info-name{font-size:1rem;font-weight:700;color:var(--gold2);margin-bottom:2px;}
+.port-info-cat{font-size:.72rem;color:var(--text3);margin-bottom:6px;}
+.port-info-stats{font-size:.82rem;color:var(--text2);line-height:1.8;margin-bottom:6px;}
+.port-info-effs{font-size:.75rem;color:var(--cyan2);line-height:1.6;}
+.port-info-sep{border-top:1px solid var(--border);margin:6px 0;}
+.port-info-compat{font-size:.72rem;color:var(--text2);line-height:1.5;}
+#port-log{width:220px;min-width:180px;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--panel2);}
+#port-header{display:flex;align-items:center;gap:16px;padding:12px 16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;flex-wrap:wrap;}
+.port-hd-player{display:flex;align-items:center;gap:8px;}
+.port-hd-icon{font-size:2rem;}
+.port-hd-name{font-size:1.1rem;font-weight:700;color:var(--text);}
+.port-hd-end-btn{margin-left:10px;padding:6px 18px;font-size:1rem;font-weight:700;background:var(--btn-bg);color:var(--btn-text);border:var(--btn-bw) solid var(--btn-border);border-radius:var(--btn-radius);cursor:pointer;white-space:nowrap;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:box-shadow .15s,border-color .15s,color .15s,background .15s;}
+.port-hd-end-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;}
+.port-hd-end-btn:focus{outline:2px solid var(--btn-border);outline-offset:2px;}
+.port-hd-stats{display:flex;gap:16px;margin-left:auto;align-items:center;flex-wrap:wrap;}
+.port-hd-gold{font-size:1.2rem;font-weight:700;color:var(--gold2);}
+.port-hd-buys{font-size:1.2rem;font-weight:700;color:var(--cyan2);}
+.port-hd-label{font-size:.72rem;color:var(--text3);margin-right:4px;}
+#port-hand{display:none;}
+.port-hand-title{font-size:.72rem;color:var(--text2);letter-spacing:.05em;border-bottom:1px solid var(--border);padding-bottom:4px;margin-bottom:4px;}
+.port-hand-cards{display:flex;flex-wrap:wrap;gap:8px;}
+.port-hand-totals{display:flex;gap:10px;font-size:.75rem;color:var(--text2);margin-top:4px;}
+.port-hand-total-item{display:flex;align-items:center;gap:4px;}
+.port-section-title{font-size:.78rem;font-weight:700;color:var(--text2);letter-spacing:.06em;padding:6px 0 4px;border-bottom:1px solid var(--border2);margin-bottom:6px;}
+.port-piles-grid{display:flex;flex-wrap:wrap;gap:12px;}
+.port-pile-wrap-scr{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;}
+.port-pile-wrap-scr.cant{opacity:.35;}
+.port-pile-wrap-scr:not(.cant):hover .gcard{border-color:var(--gold2);transform:translateY(-2px);}
+.port-pile-count{font-size:.68rem;color:var(--text3);}
+.port-pile-buy-btn{background:var(--btn-bg);color:var(--btn-text);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:var(--btn-radius);border:var(--btn-bw) solid var(--btn-border);cursor:pointer;white-space:nowrap;width:100%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:box-shadow .15s,border-color .15s,color .15s,background .15s;}
+.port-pile-wrap-scr.cant .port-pile-buy-btn{background:var(--border2);border-color:var(--border2);color:var(--text3);cursor:not-allowed;box-shadow:none;}
+.port-pile-wrap-scr:not(.cant) .port-pile-buy-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.45);color:#fff;}
+
+/* ===== REST SCREEN ===== */
+#screen-rest{display:none;flex-direction:column;height:100vh;background:var(--ink);}
+#screen-rest.active{display:flex;}
+#rest-turnbar{display:flex;align-items:center;background:var(--panel);border-bottom:1px solid var(--border);min-height:36px;overflow:hidden;flex-shrink:0;font-size:.68rem;color:var(--cyan2);padding:0 14px;font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+#rest-main{display:flex;flex:1;overflow:hidden;}
+#rest-content{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;}
+#rest-log{width:220px;min-width:180px;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--panel2);}
+#rest-header{display:flex;align-items:center;gap:16px;padding:12px 16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;flex-wrap:wrap;}
+.rest-hd-player{display:flex;align-items:center;gap:8px;}
+.rest-hd-icon{font-size:2rem;}
+.rest-hd-name{font-size:1.1rem;font-weight:700;color:var(--text);}
+.rest-hd-end-btn{margin-left:10px;padding:6px 18px;font-size:1rem;font-weight:700;background:var(--btn-bg);color:var(--btn-text);border:var(--btn-bw) solid var(--btn-border);border-radius:var(--btn-radius);cursor:pointer;white-space:nowrap;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);transition:box-shadow .15s,border-color .15s,color .15s,background .15s;}
+.rest-hd-end-btn:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;}
+.rest-hd-end-btn:focus{outline:2px solid var(--btn-border);outline-offset:2px;}
+.rest-hd-status{margin-left:auto;display:flex;gap:12px;align-items:center;}
+.rest-hd-remain{font-size:1rem;font-weight:700;color:var(--cyan2);}
+.rest-hd-label{font-size:.72rem;color:var(--text3);margin-right:2px;}
+#rest-hand{}
+.rest-hand-title{font-size:.72rem;color:var(--text2);letter-spacing:.05em;border-bottom:1px solid var(--border);padding-bottom:4px;margin-bottom:4px;}
+.rest-hand-cards{display:flex;flex-wrap:wrap;gap:10px;}
+.rest-lg-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;}
+.rest-lg-wrap.selected .gcard{border-color:var(--btn-border)!important;box-shadow:0 0 0 2px var(--btn-border);}
+.rest-lg-wrap.cant{opacity:.3;cursor:not-allowed;}
+.rest-lg-label{font-size:.65rem;color:var(--text3);}
+.rest-lg-wrap.selected .rest-lg-label{color:var(--btn-border);font-weight:700;}
+.rest-madness-badge{background:rgba(130,0,200,.25);color:#c084fc;font-size:.58rem;padding:1px 5px;border-radius:3px;border:1px solid rgba(130,0,200,.4);}
+.rest-spring-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.3);border-radius:8px;font-size:.82rem;color:var(--text2);}
+.rest-psychiatrist-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(58,184,212,.08);border:1px solid rgba(58,184,212,.3);border-radius:8px;font-size:.82rem;color:var(--text2);}
+#g-temple-status{padding:6px 12px;}
+.g-temple-status-bar{display:flex;align-items:center;gap:10px;font-size:.72rem;color:var(--text2);}
+.g-ts-label{font-weight:700;color:var(--cyan2);}
+.g-ts-floor{color:var(--text3);}
+.g-ts-counts{color:var(--text3);}
 
 /* Rest phase */
 .rest-phase-panel { display:flex; flex-direction:column; gap:8px; width:100%; }
@@ -838,26 +1023,72 @@ body::before{
 /* Hand area */
 .g-hand-area {
   flex-shrink:0;
+  max-height:62vh;
   border-bottom:1px solid var(--border);
   background:var(--deep);
   display:flex; flex-direction:column;
+  overflow:hidden;
 }
 .g-hand-hd {
   display:flex; align-items:center; gap:8px;
-  padding:3px 10px; border-bottom:1px solid var(--border); flex-shrink:0;
+  padding:4px 12px; border-bottom:1px solid var(--border); flex-shrink:0;
 }
-.g-hand-label { font-size:.62rem; color:var(--text3); letter-spacing:.1em; }
-.g-hand-count { font-size:.62rem; color:var(--text3); }
-.g-hand-totals { display:flex; gap:10px; margin-left:14px; }
-.g-hand-total { font-size:.68rem; display:flex; align-items:center; gap:3px; }
-.g-hand-total-val { font-weight:700; }
-.g-ht-gold  .g-hand-total-val { color:var(--gold2); }
-.g-ht-atk   .g-hand-total-val { color:#e87070; }
-.g-ht-draw  .g-hand-total-val { color:var(--green2); }
+.g-hand-label { font-size:.65rem; color:var(--text3); letter-spacing:.1em; }
+.g-hand-count { font-size:.65rem; color:var(--text3); }
+/* Hand info bar - prominent formula display */
+.g-hand-info-bar {
+  display:flex; align-items:baseline; flex-wrap:wrap;
+  gap:0; padding:6px 14px;
+  background:rgba(255,255,255,.03); border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.g-hi-block {
+  display:flex; align-items:baseline; gap:5px;
+  padding:0 14px; border-right:1px solid var(--border2);
+}
+.g-hi-block:first-child { padding-left:0; }
+.g-hi-block:last-child  { border-right:none; }
+.g-hi-label { font-size:.82rem; color:var(--text3); }
+.g-hi-val   { font-size:1.8rem; font-weight:800; line-height:1; }
+.g-hi-gold  { color:var(--gold2); }
+.g-hi-expl  { color:var(--cyan2); }
+.g-hi-atk   { color:#e87070; }
+.g-hi-formula {
+  font-size:.63rem; color:var(--text3); padding-top:1px;
+}
+.g-hi-atk-detail { display:flex; flex-direction:column; gap:2px; }
+.g-hi-atk-row    { display:flex; align-items:baseline; gap:5px; }
+.g-hi-penalty    { font-size:.78rem; color:var(--text3); }
+.g-hi-penalty-zero { color:var(--text2); }
+.g-hi-penalty-bad  { color:var(--red2); font-weight:700; }
+.g-hi-draw  { color:var(--green2); font-size:1rem; font-weight:700; }
 .g-hand-cards {
-  display:flex; flex-wrap:nowrap; overflow-x:auto;
-  gap:5px; padding:5px 10px;
+  display:flex; flex-wrap:wrap;
+  overflow-y:auto; overflow-x:hidden;
+  gap:14px; padding:10px 12px;
+  flex:1;
 }
+/* Hand card group (for stacking visual) */
+.g-hand-card-group { position:relative; display:inline-block; }
+.g-hand-card-group.stk-2::before,
+.g-hand-card-group.stk-3::before {
+  content:''; position:absolute; inset:0;
+  background:var(--panel2); border:1px solid var(--border2); border-radius:3px;
+  transform:translate(5px,5px); z-index:-1;
+}
+.g-hand-card-group.stk-3::after {
+  content:''; position:absolute; inset:0;
+  background:var(--panel); border:1px solid var(--border2); border-radius:3px;
+  transform:translate(10px,10px); z-index:-2;
+}
+.g-hand-count-hover {
+  position:absolute; inset:0; z-index:5;
+  background:rgba(0,0,0,.72); border-radius:3px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:3rem; font-weight:900; color:#fff;
+  opacity:0; transition:opacity .15s; pointer-events:none;
+}
+.g-hand-card-group:hover .g-hand-count-hover { opacity:1; }
 .g-boards {
   flex:1; overflow-y:auto; padding:8px 10px;
   display:flex; flex-direction:column; gap:8px;
@@ -886,6 +1117,27 @@ body::before{
 .gcard-sm   { width:82px; height:104px; }
 .gcard-hand { width:100%; min-width:0; height:118px; }
 .gcard-lg   { width:104px; height:144px; }
+.gcard-xl   { width:160px; height:224px; }
+.gcard-xl   .gcard-img-ph { font-size:2.8rem; }
+.gcard-xl   .gcard-name { font-size:.85rem; white-space:normal; }
+.gcard-xl   .gcard-stats { flex-wrap:wrap; overflow:visible; }
+.gcard-xl   .cs { font-size:.68rem; }
+.gcard-xxl  { width:210px; height:294px; }
+.gcard-xxl  .gcard-img-ph { font-size:3.5rem; }
+.gcard-xxl  .gcard-name { font-size:.95rem; white-space:normal; }
+.gcard-xxl  .gcard-stats { flex-wrap:wrap; overflow:visible; }
+.gcard-xxl  .cs { font-size:.75rem; }
+.gcard-xxxl { width:300px; height:auto; }
+.gcard-xxxl .gcard-img-ph { font-size:5rem; height:360px; }
+.gcard-xxxl .gcard-img-wrap { flex:none; height:auto; }
+.gcard-xxxl .gcard-img { width:100%; height:auto; object-fit:initial; display:block; }
+.gcard-xxxl .gcard-img.contain { width:100%; height:auto; object-fit:initial; }
+.gcard-xxxl .gcard-name { font-size:1.15rem; white-space:normal; }
+.gcard-xxxl .gcard-stats { flex-wrap:wrap; overflow:visible; }
+.gcard-xxxl .cs { font-size:.9rem; }
+/* face-down xxxl: 固定高さで裏面を保持 */
+.gcard-xxxl.gcard-facedown { height:420px; }
+.gcard-xxxl.gcard-facedown .gcard-back-inner { height:100%; }
 
 /* Face-down */
 .gcard-facedown {
@@ -992,19 +1244,23 @@ body::before{
 }
 .deck-modal-title { font-size:.82rem; color:var(--text); flex:1; font-weight:700; }
 .deck-modal-close {
-  background:none; border:2px solid var(--btn-border); color:var(--text3);
-  font-size:.72rem; padding:3px 8px; cursor:pointer; transition:all .15s;
+  background:var(--panel2); border:2px solid var(--border2); color:var(--text2);
+  font-size:.72rem; font-weight:700; padding:3px 8px; cursor:pointer; border-radius:6px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.1);
+  transition:box-shadow .15s,border-color .15s,color .15s;
 }
-.deck-modal-close:hover { color:var(--gold2); font-weight:700; border-color:var(--gold2); }
+.deck-modal-close:hover { box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.3); border-color:rgba(255,255,255,.4); color:#fff; }
 .deck-modal-tabs {
   display:flex; gap:0; border-bottom:1px solid var(--border); flex-shrink:0;
 }
 .deck-modal-tab {
-  padding:6px 18px; font-size:.72rem; background:transparent; border:none;
-  color:var(--text3); cursor:pointer; border-bottom:2px solid transparent;
-  transition:all .15s; font-family:'Noto Sans JP',sans-serif;
+  padding:6px 18px; font-size:.72rem; font-weight:700; background:var(--panel2); border:2px solid var(--border2);
+  color:var(--text3); cursor:pointer; border-radius:6px 6px 0 0; border-bottom:none;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.08);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s; font-family:'Noto Sans JP',sans-serif;
 }
-.deck-modal-tab.active { color:var(--cyan); border-bottom-color:var(--cyan); }
+.deck-modal-tab:hover:not(.active){box-shadow:inset 0 0 0 1000px rgba(0,0,0,.2),inset 0 0 0 2px rgba(255,255,255,.2);color:#fff;}
+.deck-modal-tab.active { background:var(--btn-border); border-color:var(--btn-border); color:#000; box-shadow:inset 0 0 0 2px rgba(255,255,255,.25); }
 .deck-modal-body {
   flex:1; overflow-y:auto; padding:10px 12px;
 }
@@ -1034,13 +1290,14 @@ body::before{
   flex-shrink:0;overflow-x:auto;
 }
 .bst-tab{
-  padding:7px 18px;font-size:.73rem;
-  background:transparent;border:none;border-bottom:2px solid transparent;
-  color:var(--text3);cursor:pointer;white-space:nowrap;
-  font-family:'Noto Sans JP',sans-serif;transition:all .15s;
+  padding:7px 18px;font-size:.73rem;font-weight:700;
+  background:var(--panel2);border:2px solid var(--border2);border-bottom:none;
+  color:var(--text3);cursor:pointer;white-space:nowrap;border-radius:6px 6px 0 0;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.08);
+  font-family:'Noto Sans JP',sans-serif;transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
 }
-.bst-tab.active{color:var(--cyan);border-bottom-color:var(--cyan);background:rgba(58,184,212,.04);}
-.bst-tab:hover:not(.active){color:var(--text2);}
+.bst-tab.active{background:var(--btn-border);border-color:var(--btn-border);color:#000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);}
+.bst-tab:hover:not(.active){box-shadow:inset 0 0 0 1000px rgba(0,0,0,.2),inset 0 0 0 2px rgba(255,255,255,.2);color:#fff;}
 
 .bestiary-body{flex:1;overflow-y:auto;padding:12px 14px;}
 
@@ -1134,23 +1391,27 @@ body::before{
 .bst-modal-subtitle{font-size:.7rem;color:var(--text3);margin-bottom:12px;}
 .bst-modal-close{
   position:absolute;top:10px;right:12px;z-index:2;
-  background:rgba(11,15,23,.7);border:2px solid var(--btn-border);
-  color:var(--text3);font-size:.72rem;
-  padding:3px 8px;cursor:pointer;transition:all .15s;
+  background:var(--panel2);border:2px solid var(--border2);
+  color:var(--text2);font-size:.72rem;font-weight:700;
+  padding:3px 8px;cursor:pointer;border-radius:6px;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.1);
+  transition:box-shadow .15s,border-color .15s,color .15s;
 }
-.bst-modal-close:hover{color:var(--gold2);font-weight:700;border-color:var(--gold2);}
+.bst-modal-close:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.3);border-color:rgba(255,255,255,.4);color:#fff;}
 
 /* 前後ナビゲーション */
 .bst-nav{
   position:absolute;top:50%;transform:translateY(-50%);z-index:2;
-  background:rgba(11,15,23,.75);border:2px solid var(--btn-border);
-  color:var(--text2);font-size:1.2rem;line-height:1;
+  background:var(--btn-bg);border:var(--btn-bw) solid var(--btn-border);
+  color:var(--btn-text);font-size:1.2rem;line-height:1;
   width:36px;height:56px;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .18s;
+  cursor:pointer;border-radius:var(--btn-radius);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.12);
+  transition:box-shadow .15s,border-color .15s,color .15s,background .15s;
   user-select:none;
 }
-.bst-nav:hover{background:rgba(200,168,75,.1);border-color:var(--gold2);color:var(--gold2);font-weight:700;}
+.bst-nav:hover{box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;}
 .bst-nav:disabled{opacity:.18;cursor:not-allowed;pointer-events:none;}
 .bst-nav.prev{left:-44px;}
 .bst-nav.next{right:-44px;}
@@ -1320,9 +1581,9 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
         </div>
         <div class="title-btn-row">
           <button class="btn btn-ghost btn-sm" onclick="showRules()">遊び方</button>
-          <button class="btn btn-ghost btn-sm" onclick="showScreen('bestiary-screen')">図　鑑</button>
-          <button class="btn btn-ghost btn-sm" onclick="showScreen('settings-screen')">設　定</button>
-          <button class="btn btn-lg" onclick="showScreen('setup-screen')">ゲーム開始</button>
+  <button class="btn btn-ghost btn-sm" role="button" aria-label="図鑑を開く" onclick="showScreen('bestiary-screen')">図　鑑</button>
+  <button class="btn btn-ghost btn-sm" role="button" aria-label="設定を開く" onclick="showScreen('settings-screen')">設　定</button>
+  <button class="btn btn-lg" role="button" aria-label="ゲーム開始" onclick="showScreen('setup-screen')">ゲーム開始</button>
         </div>
       </div>
     </div>
@@ -1340,8 +1601,8 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
       <div class="setup-header">
         <button class="btn btn-ghost btn-sm" onclick="showScreen('title-screen')">← タイトルへ</button>
         <h1>ゲーム設定</h1>
-        <button class="btn btn-ghost btn-sm" onclick="showRules()">遊び方</button>
-        <button class="btn btn-gold btn-lg" onclick="startGame()" style="margin-left:auto;letter-spacing:.1em;">▶ 探索を開始する</button>
+  <button class="btn btn-ghost btn-sm" role="button" aria-label="遊び方を開く" onclick="showRules()">遊び方</button>
+  <button class="btn btn-gold btn-lg" role="button" aria-label="探索を開始する" onclick="startGame()" style="margin-left:auto;letter-spacing:.1em;">▶ 探索を開始する</button>
       </div>
 
       <!-- プレイ人数 -->
@@ -1413,7 +1674,7 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
     <div class="g-action-bar">
       <button class="g-action-btn" id="g-btn-temple"
         onclick="doAction('temple')"
-        onmouseenter="showActionDesc('temple')" onmouseleave="clearActionDesc()">🏛 海底神殿に入る</button>
+        onmouseenter="showActionDesc('temple')" onmouseleave="clearActionDesc()">🏛 海底神殿を探索する</button>
       <button class="g-action-btn" id="g-btn-port"
         onclick="doAction('port')"
         onmouseenter="showActionDesc('port')" onmouseleave="clearActionDesc()">⚓ 港を訪れる</button>
@@ -1422,9 +1683,6 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
         onmouseenter="showActionDesc('rest')" onmouseleave="clearActionDesc()">🌙 休息する</button>
       <div class="g-action-sep"></div>
       <button class="g-deck-btn" onclick="openDeckModal('all')">🃏 デッキ確認</button>
-      <div class="g-action-sep"></div>
-      <!-- ラウンドイベント（全文表示） -->
-      <div class="g-action-event" id="g-action-event"></div>
       <button id="g-end-turn" style="display:none" onclick="endTurn()">ターン終了 →</button>
     </div>
     <!-- AI Turn Banner -->
@@ -1433,6 +1691,8 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
     <div class="g-action-desc" id="g-action-desc"></div>
     <!-- Watch Mode Controls (説明文の下) -->
     <div id="g-watch-controls" style="display:none;padding:4px 12px;gap:6px;align-items:center;flex-wrap:wrap;background:rgba(11,15,23,.5);border-bottom:1px solid var(--border);"></div>
+    <!-- ラウンドイベント -->
+    <div class="g-action-event" id="g-action-event"></div>
     <!-- Main -->
     <div class="g-main">
       <div class="g-left" id="g-left">
@@ -1441,33 +1701,21 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
           <div class="g-hand-hd">
             <span class="g-hand-label">手　札</span>
             <span class="g-hand-count" id="g-hand-count"></span>
-            <span class="g-hand-totals" id="g-hand-totals"></span>
           </div>
+          <div class="g-hand-info-bar" id="g-hand-info-bar"></div>
           <div class="g-hand-cards" id="g-hand-cards"></div>
         </div>
         <!-- Boards -->
         <div class="g-boards">
-          <!-- Temple -->
-          <div class="g-board-section">
+          <!-- Temple compact status -->
+          <div id="g-temple-status"></div>
+          <!-- Temple full board (during temple phase) -->
+          <div class="g-board-section" id="g-temple-section">
             <div class="g-section-hd">
               <span class="g-section-title">海底神殿</span>
               <span class="g-section-badge" id="g-temple-counts"></span>
             </div>
             <div class="g-temple-board" id="g-temple-board"></div>
-          </div>
-          <!-- Port -->
-          <div class="g-board-section">
-            <div class="g-section-hd">
-              <span class="g-section-title">港</span>
-            </div>
-            <div class="g-port-board" id="g-port-board"></div>
-          </div>
-          <!-- Rest -->
-          <div class="g-board-section" style="display:none">
-            <div class="g-section-hd">
-              <span class="g-section-title">休息</span>
-            </div>
-            <div id="g-rest-board"></div>
           </div>
         </div>
       </div>
@@ -1530,8 +1778,31 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
         </div>
         <div class="sett-preview-row">
           <button class="btn btn-sm" style="pointer-events:none;">通常状態</button>
-          <button class="btn btn-sm" style="color:var(--gold2);font-weight:700;background:rgba(200,168,75,.07);pointer-events:none;">ホバー状態</button>
+          <button class="btn btn-sm" style="pointer-events:none;box-shadow:inset 0 0 0 1000px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.35);border-color:rgba(255,255,255,.5);color:#fff;">ホバー状態</button>
           <span class="sett-save-notice">※ 保存ボタンを押すと設定が反映されます</span>
+        </div>
+      </div>
+
+      <!-- ボタンスタイル -->
+      <div class="sett-section">
+        <div class="setup-section-label">ボタンスタイル</div>
+        <div class="sett-opt-row">
+          <button class="btn btn-sm sett-sel-btn" id="sett-style-outline" data-style="outline" onclick="settSelectBtnStyle('outline')">□ アウトライン</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-style-filled" data-style="filled" onclick="settSelectBtnStyle('filled')">■ 塗りつぶし</button>
+        </div>
+        <div class="sett-opt-sub-label">角丸</div>
+        <div class="sett-opt-row">
+          <button class="btn btn-sm sett-sel-btn" id="sett-radius-0"  data-radius="0"  onclick="settSelectBtnRadius(0)">□ なし</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-radius-4"  data-radius="4"  onclick="settSelectBtnRadius(4)">小</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-radius-6"  data-radius="6"  onclick="settSelectBtnRadius(6)">中</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-radius-12" data-radius="12" onclick="settSelectBtnRadius(12)">大</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-radius-20" data-radius="20" onclick="settSelectBtnRadius(20)">○ 楕円</button>
+        </div>
+        <div class="sett-opt-sub-label">枠線の太さ</div>
+        <div class="sett-opt-row">
+          <button class="btn btn-sm sett-sel-btn" id="sett-bw-1" data-bw="1" onclick="settSelectBtnBw(1)">細 1px</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-bw-2" data-bw="2" onclick="settSelectBtnBw(2)">中 2px</button>
+          <button class="btn btn-sm sett-sel-btn" id="sett-bw-3" data-bw="3" onclick="settSelectBtnBw(3)">太 3px</button>
         </div>
       </div>
 
@@ -1572,6 +1843,53 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
     <div class="result-footer">
       <button class="btn btn-ghost btn-sm" onclick="showScreen('game-screen')">最終盤面を見る</button>
       <button class="btn btn-gold btn-sm" onclick="showScreen('title-screen')">タイトルへ戻る</button>
+    </div>
+  </div>
+
+  <!-- ==================== COMBAT SCREEN ==================== -->
+  <div id="screen-combat" class="screen">
+    <div id="cbt-turnbar"></div>
+    <div id="cbt-main">
+      <div id="cbt-content">
+        <div id="cbt-header"></div>
+        <div id="cbt-body"></div>
+      </div>
+      <div id="cbt-log">
+        <div class="g-log-hd">ログ</div>
+        <div id="cbt-log-body" class="g-log-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PORT SCREEN ==================== -->
+  <div id="screen-port" class="screen">
+    <div id="port-turnbar"></div>
+    <div id="port-main">
+      <div id="port-content">
+        <div id="port-header"></div>
+        <div id="port-hand"></div>
+        <div id="port-body"></div>
+      </div>
+      <div id="port-log">
+        <div class="g-log-hd">ログ</div>
+        <div id="port-log-body" class="g-log-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== REST SCREEN ==================== -->
+  <div id="screen-rest" class="screen">
+    <div id="rest-turnbar"></div>
+    <div id="rest-main">
+      <div id="rest-content">
+        <div id="rest-header"></div>
+        <div id="rest-hand"></div>
+        <div id="rest-body"></div>
+      </div>
+      <div id="rest-log">
+        <div class="g-log-hd">ログ</div>
+        <div id="rest-log-body" class="g-log-body"></div>
+      </div>
     </div>
   </div>
 
@@ -1673,13 +1991,12 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
     <div class="rules-tab-content rules-body">
       <h2>海底神殿に入る</h2>
       <ol style="padding-left:18px;display:flex;flex-direction:column;gap:6px;">
-        <li><span class="hi">手札を全て公開</span>し、各探索者に装備を割り当てます。<br>
-            各<span class="hi">探索者</span>に武器1・防具1・道具1を装備できます（アイテムの重さ ≤ 探索者の体力のものに限る）。<br>
-            火器（小火器・重火器）は「火器使用可能」の探索者のみ装備できます。<br>
-            同じアイテムを複数の探索者に装備させることはできません。</li>
+        <li><span class="hi">手札を全て公開</span>します。各探索者への装備は<span class="hi">自動で割り当て</span>られます。<br>
+            各<span class="hi">探索者</span>に武器1・防具1・道具1が装備されます（アイテムの重さ ≤ 探索者の体力のものに限る）。<br>
+            火器（小火器・重火器）は「火器使用可能」の探索者のみ装備されます。</li>
         <li>神殿に積まれた<span class="hi">カードをオープン</span>します：
           <ul style="margin-top:4px;display:flex;flex-direction:column;gap:3px;">
-            <li><span class="hi-gold">宝物（宝冠・宝盃・宝剣）</span>→ 即座に獲得、捨て山へ。<span class="hi-red">狂気1枚</span>追加。</li>
+            <li><span class="hi-gold">宝物（宝冠・宝盃・宝剣）</span>→ 即座に獲得、捨て山へ。</li>
             <li><span class="hi-gold">秘宝（銀の鍵・輝くトラペゾヘドロン）</span>→ 即座に獲得、<span class="hi-red">ゲーム終了</span>。</li>
             <li><span class="hi-red">モンスター</span>→ 戦闘へ。</li>
           </ul>
@@ -1741,6 +2058,7 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
             <span class="hi-red">狂気カードのみ2枚まで</span>、または<span class="hi">通常カードのみ2枚まで</span>が可能（混合不可）。</li>
         <li><span class="hi">訓練（金貨値6消費・探索者の攻撃力+1）</span>：<br>
             手札の金貨値を合計し、6G消費するごとに探索者の攻撃力を+1できます。<br>
+            <span class="hi">初回の訓練のみ、攻撃力+1に加えて体力も+1されます。</span>2回目以降は攻撃力のみ上昇。<br>
             残余金貨がある限り続けて訓練可能。</li>
         <li>全手札を捨て山に置き、新たに8枚ドローして手番終了。</li>
       </ol>
@@ -1764,9 +2082,9 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
       </ul>
       <h2>港カード（武器）</h2>
       <ul>
-        <li><span class="hi">手斧</span>：金貨値3 / 重さ1 / 攻撃+3 / コスト2</li>
-        <li><span class="hi">手槍</span>：金貨値3 / 重さ3 / 攻撃+5 / コスト4</li>
-        <li><span class="hi">大剣</span>：金貨値4 / 重さ5 / 攻撃+8 / コスト6 / <span class="hi-cyan">⚡ 格闘家と組み合わせで攻撃+3</span></li>
+        <li><span class="hi">手斧</span>：金貨値3 / 重さ1 / 攻撃+2 / コスト2</li>
+        <li><span class="hi">手槍</span>：金貨値3 / 重さ2 / 攻撃+4 / コスト4</li>
+        <li><span class="hi">大剣</span>：金貨値4 / 重さ5 / 攻撃+7 / コスト7 / <span class="hi-cyan">⚡ 格闘家と組み合わせで攻撃+3</span></li>
       </ul>
       <h2>港カード（防具）</h2>
       <ul>
@@ -1777,29 +2095,29 @@ table.debug-table tr:nth-child(even) td{background:rgba(13,21,32,.5);}
       <h2>港カード（火器）</h2>
       <p style="font-size:.72rem;color:var(--text3);margin-bottom:4px">※「火器使用可能」の探索者のみ装備可能</p>
       <ul>
-        <li><span class="hi">小火器</span>：金貨値1 / 重さ1 / 攻撃+5 / 神殿探索で1枚追加ドロー / コスト6 / <span class="hi-cyan">⚡ ベテランと組み合わせで攻撃+3</span></li>
+        <li><span class="hi">小火器</span>：金貨値1 / 重さ1 / 攻撃+6 / 神殿探索で2枚追加ドロー / コスト6 / <span class="hi-cyan">⚡ ベテランと組み合わせで攻撃+3</span></li>
         <li><span class="hi">重火器</span>：金貨値1 / 重さ4 / 攻撃+12 / 神殿探索で2枚追加ドロー / コスト12 / <span class="hi-cyan">⚡ 歴戦と組み合わせで攻撃+3</span></li>
       </ul>
       <h2>探索者カード</h2>
       <ul>
         <li><span class="hi">支援型探索者</span>：体力3 / 攻撃3 / 神殿探索で1枚追加ドロー / コスト7 / <span class="hi-cyan">⚡ 防護盾装備で防御+3</span></li>
         <li><span class="hi">精神科医探索者</span>：体力2 / 攻撃2 / 港・休息フェーズで手札の狂気を全て除外 / コスト8</li>
-        <li><span class="hi">格闘家探索者</span>：体力5 / 攻撃6 / コスト9 / <span class="hi-cyan">⚡ 大剣装備で攻撃+3</span></li>
+        <li><span class="hi">格闘家探索者</span>：体力5 / 攻撃6 / コスト12 / <span class="hi-cyan">⚡ 大剣装備で攻撃+3</span></li>
         <li><span class="hi">ベテラン探索者</span>：体力3 / 攻撃4 / 火器使用可能 / コスト10 / <span class="hi-cyan">⚡ 小火器装備で攻撃+3</span></li>
         <li><span class="hi">歴戦探索者</span>：体力4 / 攻撃4 / 火器使用可能 / コスト15 / <span class="hi-cyan">⚡ 重火器装備で攻撃+3</span></li>
       </ul>
       <h2>宝物カード（モンスターデッキに混在）</h2>
       <p style="font-size:.72rem;color:var(--text3);margin-bottom:4px">宝物は道具スロットに装備でき、強さ25のボスと戦うとき対ボスボーナスが戦闘力に加算されます。</p>
       <ul>
-        <li><span class="hi">宝冠</span>：勝利点1 / 金貨値7 / 対ボス戦闘力+8</li>
-        <li><span class="hi">宝盃</span>：勝利点1 / 金貨値6 / 対ボス戦闘力+10</li>
-        <li><span class="hi">宝剣</span>：勝利点1 / 金貨値5 / 対ボス戦闘力+12</li>
+        <li><span class="hi">宝冠</span>：勝利点4 / 金貨値7 / 対ボス戦闘力+8</li>
+        <li><span class="hi">宝盃</span>：勝利点4 / 金貨値6 / 対ボス戦闘力+10</li>
+        <li><span class="hi">宝剣</span>：勝利点4 / 金貨値5 / 対ボス戦闘力+12</li>
       </ul>
       <h2>秘宝カード（秘宝デッキ）</h2>
       <p style="font-size:.72rem;color:var(--text3);margin-bottom:4px">秘宝デッキにはボスモンスターも混在しており、秘宝に到達するにはボスを倒す必要があります。</p>
       <ul>
-        <li><span class="hi" style="color:var(--gold)">銀の鍵</span>：勝利点8 — 獲得即<span class="hi-red">ゲーム終了</span></li>
-        <li><span class="hi" style="color:var(--gold)">輝くトラペゾヘドロン</span>：勝利点5 ＋ 手札の狂気1枚につき+1点 — 獲得即<span class="hi-red">ゲーム終了</span></li>
+        <li><span class="hi" style="color:var(--gold)">銀の鍵</span>：勝利点10 — 獲得即<span class="hi-red">ゲーム終了</span></li>
+        <li><span class="hi" style="color:var(--gold)">輝くトラペゾヘドロン</span>：勝利点7 ＋ 狂気カード2枚につき+1点 — 獲得即<span class="hi-red">ゲーム終了</span></li>
       </ul>
     </div>
   </div>
@@ -1896,22 +2214,22 @@ const CARD_DB = (() => {
     { id:'port_handcarry',   name:'ハンドキャリー',category:'port', subtype:'tool',  goldValue:2, buyCost:4,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:0,  defense:0, drawCards:2, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/hand_carry.jpg' },
     { id:'port_specialcargo',name:'特殊貨物',     category:'port', subtype:'tool',   goldValue:1, buyCost:8,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:0,  defense:0, drawCards:3, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/special_cargo.jpg' },
     // 武器
-    { id:'port_hatchet',     name:'手斧',         category:'port', subtype:'weapon', goldValue:3, buyCost:2,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:3,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/hand_axe.jpg' },
-    { id:'port_spear',       name:'手槍',         category:'port', subtype:'weapon', goldValue:3, buyCost:4,  hp:null, weight:3, strength:null, guard:0, vp:0, attack:5,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/hand_spear.jpg' },
-    { id:'port_greatsword',  name:'大剣',         category:'port', subtype:'weapon', goldValue:4, buyCost:6,  hp:null, weight:5, strength:null, guard:0, vp:0, attack:8,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/greatsword.jpg' },
+    { id:'port_hatchet',     name:'手斧',         category:'port', subtype:'weapon', goldValue:3, buyCost:2,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:2,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/hand_axe.jpg' },
+    { id:'port_spear',       name:'手槍',         category:'port', subtype:'weapon', goldValue:3, buyCost:4,  hp:null, weight:2, strength:null, guard:0, vp:0, attack:4,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/hand_spear.jpg' },
+    { id:'port_greatsword',  name:'大剣',         category:'port', subtype:'weapon', goldValue:4, buyCost:7,  hp:null, weight:5, strength:null, guard:0, vp:0, attack:7,  defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/greatsword.jpg' },
     // 防具
     { id:'port_armor_mid',   name:'中級防具',     category:'port', subtype:'armor',  goldValue:3, buyCost:5,  hp:null, weight:2, strength:null, guard:0, vp:0, attack:0,  defense:4, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/mid_armor.jpg' },
     { id:'port_shield',      name:'防護盾',       category:'port', subtype:'armor',  goldValue:3, buyCost:6,  hp:null, weight:3, strength:null, guard:0, vp:0, attack:0,  defense:6, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/shield.jpg' },
     { id:'port_heavyarmor',  name:'重装甲',       category:'port', subtype:'armor',  goldValue:4, buyCost:8,  hp:null, weight:4, strength:null, guard:0, vp:0, attack:0,  defense:9, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/heavy_armor.jpg' },
     // 火器
-    { id:'port_pistol',      name:'小火器',       category:'port', subtype:'gun',    goldValue:1, buyCost:6,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:5,  defense:0, drawCards:1, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/small_firearm.jpg' },
+    { id:'port_pistol',      name:'小火器',       category:'port', subtype:'gun',    goldValue:1, buyCost:6,  hp:null, weight:1, strength:null, guard:0, vp:0, attack:6,  defense:0, drawCards:2, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/small_firearm.jpg' },
     { id:'port_heavygun',    name:'重火器',       category:'port', subtype:'gun',    goldValue:1, buyCost:12, hp:null, weight:4, strength:null, guard:0, vp:0, attack:12, defense:0, drawCards:2, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0,  image:'image/minato/heavy_firearm.jpg' },
   ];
 
   const explorer = [
     { id:'exp_support',      name:'支援型探索者',   category:'explorer', subtype:'person', goldValue:0, buyCost:7,  hp:3, weight:null, strength:null, guard:0, vp:0, attack:3, defense:0, drawCards:1, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0, synergy:{ itemId:'port_shield',     bonus:3, label:'防護盾装備で防御+3' }, image:'image/minato/support_explorer.jpg' },
     { id:'exp_psychiatrist', name:'精神科医探索者', category:'explorer', subtype:'person', goldValue:0, buyCost:8,  hp:2, weight:null, strength:null, guard:0, vp:0, attack:2, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:true,  specialVP:null, bossDefBonus:0, synergy:null, image:'image/minato/psychiatrist_explorer.jpg' },
-    { id:'exp_fighter',      name:'格闘家探索者',   category:'explorer', subtype:'person', goldValue:0, buyCost:9,  hp:5, weight:null, strength:null, guard:0, vp:0, attack:6, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0, synergy:{ itemId:'port_greatsword', bonus:3, label:'大剣装備で攻撃+3' },   image:'image/minato/fighter_explorer.jpg' },
+    { id:'exp_fighter',      name:'格闘家探索者',   category:'explorer', subtype:'person', goldValue:0, buyCost:12, hp:5, weight:null, strength:null, guard:0, vp:0, attack:6, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:0, synergy:{ itemId:'port_greatsword', bonus:3, label:'大剣装備で攻撃+3' },   image:'image/minato/fighter_explorer.jpg' },
     { id:'exp_veteran',      name:'ベテラン探索者', category:'explorer', subtype:'person', goldValue:0, buyCost:10, hp:3, weight:null, strength:null, guard:0, vp:0, attack:4, defense:0, drawCards:0, portBuys:0, canUseGun:true,  removeMadness:false, specialVP:null, bossDefBonus:0, synergy:{ itemId:'port_pistol',     bonus:3, label:'小火器装備で攻撃+3' }, image:'image/minato/veteran_explorer.jpg' },
     { id:'exp_elite',        name:'歴戦探索者',     category:'explorer', subtype:'person', goldValue:0, buyCost:15, hp:4, weight:null, strength:null, guard:0, vp:0, attack:4, defense:0, drawCards:0, portBuys:0, canUseGun:true,  removeMadness:false, specialVP:null, bossDefBonus:0, synergy:{ itemId:'port_heavygun',   bonus:3, label:'重火器装備で攻撃+3' }, image:'image/minato/seasoned_explorer.jpg' },
   ];
@@ -1934,14 +2252,14 @@ const CARD_DB = (() => {
   ];
 
   const treasure = [
-    { id:'tre_crown',   name:'宝冠', category:'treasure', subtype:'tool', goldValue:7, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:1, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:8,  image:'image/monster/treasure_crown.jpg' },
-    { id:'tre_chalice', name:'宝盃', category:'treasure', subtype:'tool', goldValue:6, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:1, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:10, image:'image/monster/treasure_cup.jpg' },
-    { id:'tre_sword',   name:'宝剣', category:'treasure', subtype:'tool', goldValue:5, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:1, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:12, image:'image/monster/treasure_sword.jpg' },
+    { id:'tre_crown',   name:'宝冠', category:'treasure', subtype:'tool', goldValue:7, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:4, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:8,  image:'image/monster/treasure_crown.jpg' },
+    { id:'tre_chalice', name:'宝盃', category:'treasure', subtype:'tool', goldValue:6, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:4, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:10, image:'image/monster/treasure_cup.jpg' },
+    { id:'tre_sword',   name:'宝剣', category:'treasure', subtype:'tool', goldValue:5, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:4, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null, bossDefBonus:12, image:'image/monster/treasure_sword.jpg' },
   ];
 
   const relic = [
-    { id:'rel_silverkey',  name:'銀の鍵',               category:'relic', subtype:'relic', goldValue:0, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:8, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null,          bossDefBonus:0, image:'image/monster/silver_key.jpg' },
-    { id:'rel_trapezoid',  name:'輝くトラペゾヘドロン', category:'relic', subtype:'relic', goldValue:0, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:5, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:'1perMadness', bossDefBonus:0, image:'image/monster/shining_trapezohedron.jpg' },
+    { id:'rel_silverkey',  name:'銀の鍵',               category:'relic', subtype:'relic', goldValue:0, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:10, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:null,           bossDefBonus:0, image:'image/monster/silver_key.jpg' },
+    { id:'rel_trapezoid',  name:'輝くトラペゾヘドロン', category:'relic', subtype:'relic', goldValue:0, buyCost:0, hp:null, weight:null, strength:null, guard:0, vp:7, attack:0, defense:0, drawCards:0, portBuys:0, canUseGun:false, removeMadness:false, specialVP:'1per2Madness', bossDefBonus:0, image:'image/monster/shining_trapezohedron.jpg' },
   ];
 
   const madness = [
@@ -2018,10 +2336,13 @@ function createTemplePile(playerCount) {
     ...CARD_DB.treasure.map(c => DeckUtils.makeInstance(c.id)),
     bossForMonster,
   ]);
-  const relicDeck = DeckUtils.shuffle([
-    ...shuffledBosses,                              // remaining bosses
-    ...CARD_DB.relic.map(c => DeckUtils.makeInstance(c.id)),
-  ]);
+  // 秘宝デッキ：ガードボス1枚を一番上、秘宝カードが下（シャッフルしない）
+  const relicGuardBoss = shuffledBosses.pop(); // 1体をガードに
+  const relicDeck = [
+    ...shuffledBosses,                               // 残りのボス（最下層）
+    ...CARD_DB.relic.map(c => DeckUtils.makeInstance(c.id)), // 秘宝カード
+    relicGuardBoss,                                  // ガードボス（最上位）
+  ];
   const firstCard = monsterDeck.pop();
   return {
     monsterDeck,
@@ -2156,8 +2477,8 @@ function drawNextRoundEvent() {
 ---------------------------------------------------------------- */
 function showScreen(id) {
   hideCardTooltip();
-  // ゲーム画面から離れるときはゲームを停止
-  if (id !== 'game-screen') {
+  // ゲーム画面・コンバット画面から離れるときはゲームを停止
+  if (id !== 'game-screen' && id !== 'screen-combat' && id !== 'screen-port' && id !== 'screen-rest') {
     _gameActive = false;
     if (_aiTimerId !== null) { clearTimeout(_aiTimerId); _aiTimerId = null; }
     clearAllEffects();
@@ -2179,7 +2500,7 @@ function showScreen(id) {
    アイコン定数
 ---------------------------------------------------------------- */
 const PLAYER_ICONS = ['🐋','🐬','🦭','🐟','🐠','🐡','🦈','🐙','🐚','🪸','🪼','🦀','🦞','🦐','🦑','🦪'];
-const DEFAULT_ICONS  = ['🐋','🦈','🐬','🐙','🦑'];
+const DEFAULT_ICONS  = ['🦐','🦈','🐬','🐙','🦑'];
 
 /* ================================================================
    APP SETTINGS
@@ -2199,9 +2520,12 @@ const AppSettings = (() => {
   const STORAGE_KEY = 'oceanMonumentSettings';
   const defaults = {
     playerNames: ['探索者A','AI-1','AI-2','AI-3','AI-4'],
-    playerIcons: ['🐋','🦈','🐬','🐙','🦑'],
-    btnBorderColor: '#c0392b',
-    seVolume: 80,
+    playerIcons: ['🦐','🦈','🐬','🐙','🦑'],
+    btnBorderColor: '#1a6fb5',
+    btnStyle: 'outline',
+    btnRadius: 6,
+    btnBorderWidth: 2,
+    seVolume: 30,
   };
   let current = { ...defaults };
 
@@ -2220,7 +2544,13 @@ const AppSettings = (() => {
   }
 
   function apply() {
-    document.documentElement.style.setProperty('--btn-border', current.btnBorderColor);
+    const color = current.btnBorderColor;
+    const filled = current.btnStyle === 'filled';
+    document.documentElement.style.setProperty('--btn-border', color);
+    document.documentElement.style.setProperty('--btn-bg', filled ? color : 'transparent');
+    document.documentElement.style.setProperty('--btn-text', filled ? '#000' : '#ccdde8');
+    document.documentElement.style.setProperty('--btn-radius', (current.btnRadius ?? 6) + 'px');
+    document.documentElement.style.setProperty('--btn-bw', (current.btnBorderWidth ?? 2) + 'px');
     SE.setVolume(current.seVolume / 100);
   }
 
@@ -2285,19 +2615,58 @@ function initSettingsUI() {
   // color pickerの変更でリアルタイムプレビュー
   if (colorEl) {
     colorEl.oninput = () => {
-      document.documentElement.style.setProperty('--btn-border', colorEl.value);
+      const v = colorEl.value;
+      document.documentElement.style.setProperty('--btn-border', v);
+      if (AppSettings.get('btnStyle') === 'filled') {
+        document.documentElement.style.setProperty('--btn-bg', v);
+      }
       document.querySelectorAll('.sett-color-swatch').forEach(s => s.classList.remove('active'));
     };
   }
+
+  // ボタンスタイル / 角丸 / 枠線の太さ
+  const style  = AppSettings.get('btnStyle')       || 'outline';
+  const radius = AppSettings.get('btnRadius')       ?? 6;
+  const bw     = AppSettings.get('btnBorderWidth')  ?? 2;
+  _highlightSettOpt('sett-style-',  'data-style',  style);
+  _highlightSettOpt('sett-radius-', 'data-radius', String(radius));
+  _highlightSettOpt('sett-bw-',     'data-bw',     String(bw));
 }
 
 function settSelectColor(color) {
   document.documentElement.style.setProperty('--btn-border', color);
+  if (AppSettings.get('btnStyle') === 'filled') {
+    document.documentElement.style.setProperty('--btn-bg', color);
+  }
   const colorEl = document.getElementById('sett-border-color');
   if (colorEl) colorEl.value = color;
   document.querySelectorAll('.sett-color-swatch').forEach(s => {
     s.classList.toggle('active', s.style.background === color || s.style.backgroundColor === color);
   });
+}
+
+function _highlightSettOpt(idPrefix, attr, value) {
+  document.querySelectorAll(`.sett-sel-btn[${attr}]`).forEach(b => {
+    b.classList.toggle('sett-sel-active', b.getAttribute(attr) === value);
+  });
+}
+
+function settSelectBtnStyle(style) {
+  const filled = style === 'filled';
+  const color = AppSettings.get('btnBorderColor');
+  document.documentElement.style.setProperty('--btn-bg',   filled ? color : 'transparent');
+  document.documentElement.style.setProperty('--btn-text', filled ? '#000' : '#ccdde8');
+  _highlightSettOpt('sett-style-', 'data-style', style);
+}
+
+function settSelectBtnRadius(r) {
+  document.documentElement.style.setProperty('--btn-radius', r + 'px');
+  _highlightSettOpt('sett-radius-', 'data-radius', String(r));
+}
+
+function settSelectBtnBw(w) {
+  document.documentElement.style.setProperty('--btn-bw', w + 'px');
+  _highlightSettOpt('sett-bw-', 'data-bw', String(w));
 }
 
 function saveAndApplySettings() {
@@ -2313,7 +2682,13 @@ function saveAndApplySettings() {
   const color = colorEl ? colorEl.value : AppSettings.get('btnBorderColor');
   const volEl = document.getElementById('sett-se-vol');
   const vol = volEl ? parseInt(volEl.value) : AppSettings.get('seVolume');
-  AppSettings.save({ playerNames: names, playerIcons: icons, btnBorderColor: color, seVolume: vol });
+  const styleEl = document.querySelector('.sett-sel-btn.sett-sel-active[data-style]');
+  const radiusEl = document.querySelector('.sett-sel-btn.sett-sel-active[data-radius]');
+  const bwEl     = document.querySelector('.sett-sel-btn.sett-sel-active[data-bw]');
+  const btnStyle       = styleEl  ? styleEl.dataset.style              : AppSettings.get('btnStyle');
+  const btnRadius      = radiusEl ? parseInt(radiusEl.dataset.radius)  : AppSettings.get('btnRadius');
+  const btnBorderWidth = bwEl     ? parseInt(bwEl.dataset.bw)          : AppSettings.get('btnBorderWidth');
+  AppSettings.save({ playerNames: names, playerIcons: icons, btnBorderColor: color, btnStyle, btnRadius, btnBorderWidth, seVolume: vol });
   // swatches を更新
   document.querySelectorAll('.sett-color-swatch').forEach(s => {
     s.classList.toggle('active', s.style.background === color || s.style.backgroundColor === color);
@@ -2722,7 +3097,7 @@ function buildBstCardHTML(c) {
     synergyTag = `<div class="bst-synergy-tag">⚡ ${synergyOwners2.map(x => x.name).join('・')}と組み合わせで+${synergyOwners2[0].synergy.bonus}</div>`;
 
   return `
-    <div class="bst-card ${clsMap[cat]||''}" onclick="openBstDetail('${c.id}')">
+    <div class="bst-card ${clsMap[cat]||''}" role="button" aria-label="${c.name}の詳細を見る" tabindex="0" onclick="openBstDetail('${c.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openBstDetail('${c.id}')">
       ${imgHtml}
       <div class="bst-info">
         <div class="bst-name${c.id === 'rel_trapezoid' ? ' long-name' : ''}">${c.name}</div>
@@ -2767,7 +3142,13 @@ function openBstDetail(cardId) {
   _bstCurrentIdx = idx >= 0 ? idx : 0;
   renderBstModal(list[_bstCurrentIdx]);
   updateBstNavButtons(list.length);
-  document.getElementById('bst-detail-overlay').classList.remove('hidden');
+  const overlay = document.getElementById('bst-detail-overlay');
+  overlay.classList.remove('hidden');
+  // モーダルを開くときに現在のフォーカスを保存
+  overlay._prevFocus = document.activeElement;
+  // モーダル内の最初のフォーカス可能な要素にフォーカス
+  const firstFocusable = overlay.querySelector('.bst-modal-close, .bst-nav.prev, .bst-nav.next');
+  if (firstFocusable) firstFocusable.focus();
 }
 
 /** モーダル内容を描画（カードオブジェクトを受け取る） */
@@ -2832,8 +3213,8 @@ function renderBstModal(c) {
     effs.push(`港フェーズおよび休息フェーズで、手札の狂気カードを全て除外できる`);
   if (c.bossDefBonus > 0)
     effs.push(`装備時、強さ25のボスとの戦闘力に+${c.bossDefBonus}`);
-  if (c.specialVP === '1perMadness')
-    effs.push(`狂気カード1枚につき勝利点+1点（ゲーム終了時に集計）`);
+  if (c.specialVP === '1per2Madness')
+    effs.push(`狂気カード2枚につき勝利点+1点（ゲーム終了時に集計）`);
   if (c.guard > 0 && c.category !== 'monster')
     effs.push(`守護${c.guard}：恐怖ペナルティを-${c.guard * 2}軽減`);
   if (c.category === 'relic')
@@ -2859,7 +3240,12 @@ function renderBstModal(c) {
 }
 
 function closeBstDetail() {
-  document.getElementById('bst-detail-overlay').classList.add('hidden');
+  const overlay = document.getElementById('bst-detail-overlay');
+  overlay.classList.add('hidden');
+  // モーダルを閉じるときにフォーカスを元に戻す
+  if (overlay._prevFocus && overlay._prevFocus.focus) {
+    overlay._prevFocus.focus();
+  }
 }
 function closeBstDetailOnBg(e) {
   if (e.target === document.getElementById('bst-detail-overlay')) closeBstDetail();
@@ -2878,6 +3264,92 @@ document.addEventListener('keydown', (e) => {
    Step 4: ゲーム画面レイアウト / カードレンダリング
 ================================================================ */
 
+/* ---- イベントリスナー管理用変数 ---- */
+let _eventListeners = []; // { el, type, handler, options }
+
+/* ---- イベントリスナー登録ラッパー ---- */
+function addEventListenerSafe(el, type, handler, options = false) {
+  if (!el || typeof handler !== 'function') return;
+  el.addEventListener(type, handler, options);
+  _eventListeners.push({ el, type, handler, options });
+}
+
+/* ---- 全イベントリスナー解除 ---- */
+function removeAllEventListeners() {
+  _eventListeners.forEach(({ el, type, handler, options }) => {
+    try { el.removeEventListener(type, handler, options); } catch(e) {}
+  });
+  _eventListeners = [];
+}
+
+/* ---- AbortController で一括キャンセル可能なイベント登録 ---- */
+function addAbortableEventListener(el, type, handler, options = {}) {
+  if (!el || typeof handler !== 'function') return;
+  const controller = new AbortController();
+  el.addEventListener(type, handler, { ...options, signal: controller.signal });
+  return controller;
+}
+
+/* ---- モーダル用フォーカス管理ユーティリティ ---- */
+let _prevFocus = null;
+
+function saveFocus() {
+  _prevFocus = document.activeElement;
+}
+
+function restoreFocus() {
+  if (_prevFocus && _prevFocus.focus) {
+    _prevFocus.focus();
+    _prevFocus = null;
+  }
+}
+
+function trapFocusInModal(modalEl) {
+  if (!modalEl) return;
+  const focusableEls = modalEl.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstEl = focusableEls[0];
+  const lastEl = focusableEls[focusableEls.length - 1];
+  modalEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
+      } else {
+        if (document.activeElement === lastEl) { e.preventDefault(); firstEl.focus(); }
+      }
+    }
+    if (e.key === 'Escape') { closeAllModals(); }
+  });
+}
+
+function closeAllModals() {
+  document.getElementById('bst-detail-overlay')?.classList.add('hidden');
+  document.getElementById('deck-modal-overlay')?.classList.add('hidden');
+  document.getElementById('rules-overlay')?.classList.add('hidden');
+  restoreFocus();
+}
+
+/* ---- モーダル開閉時のフォーカス管理 ---- */
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  saveFocus();
+  modal.classList.remove('hidden');
+  // モーダル内の最初のフォーカス可能な要素にフォーカス
+  const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (firstFocusable) firstFocusable.focus();
+  // フォーカストラップを有効化
+  trapFocusInModal(modal);
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  modal.classList.add('hidden');
+  restoreFocus();
+}
+
 /* ---- カテゴリ別スタイル ---- */
 const CAT_STYLE = {
   starter:  { border:'#3a5a3a', bg:'#0c190e', icon:'🧭' },
@@ -2894,24 +3366,42 @@ const SUBTYPE_ICON = {
 };
 
 /* ---- カードスタッツ HTML ---- */
-function buildCardStats(c) {
+function buildCardStats(c, inHand = false) {
+  // 統一表示順序: buyCost → goldValue → attack → drawCards(🎴) → defense → hp → weight → strength → vp → guard
   if (c.category === 'madness') return '<span class="cs" style="color:var(--purple2)">狂気</span>';
   const p = [];
-  if (c.attack   > 0) p.push(`<span class="cs cs-atk">⚔${c.attack}</span>`);
-  if (c.defense  > 0) p.push(`<span class="cs cs-def">🛡${c.defense}</span>`);
-  if (c.hp          ) p.push(`<span class="cs cs-hp">❤${c.hp}</span>`);
-  if (c.strength    ) p.push(`<span class="cs cs-str">💪${c.strength}</span>`);
-  if (c.vp       > 0) p.push(`<span class="cs cs-vp">★${c.vp}</span>`);
-  if (c.goldValue> 0) p.push(`<span class="cs cs-gold">💰${c.goldValue}</span>`);
-  if (c.guard    > 0) p.push(`<span class="cs cs-grd">👁${c.guard}</span>`);
-  if (c.drawCards> 0) p.push(`<span class="cs cs-draw">+${c.drawCards}</span>`);
-  if (c.weight   > 0) p.push(`<span class="cs cs-wt">⚖${c.weight}</span>`);
+
+  if (c.subtype === 'person') {
+    // 探索者: コスト → 攻撃 → ドロー → 体力
+    if (c.buyCost  > 0) p.push(`<span class="cs" style="color:var(--gold2)">💴${c.buyCost}</span>`);
+    if (c.attack   > 0) p.push(`<span class="cs cs-atk">⚔${c.attack}</span>`);
+    if (c.drawCards> 0) p.push(`<span class="cs cs-draw">🎴${c.drawCards}</span>`);
+    if (c.hp          ) p.push(`<span class="cs cs-hp">❤${c.hp}</span>`);
+  } else if (c.category === 'monster' && inHand) {
+    // モンスターが手札: 効果あり＋勝利点のみ (統一順序)
+    if (c.goldValue> 0) p.push(`<span class="cs cs-gold">💰${c.goldValue}</span>`);
+    if (c.drawCards> 0) p.push(`<span class="cs cs-draw">🎴${c.drawCards}</span>`);
+    if (c.vp       > 0) p.push(`<span class="cs cs-vp">★${c.vp}</span>`);
+    if (c.guard    > 0) p.push(`<span class="cs cs-grd">👁${c.guard}</span>`);
+  } else {
+    // 統一順序: buyCost → goldValue → attack → drawCards → defense → hp → weight → strength → vp → guard
+    if (c.buyCost  > 0) p.push(`<span class="cs" style="color:var(--gold2)">💴${c.buyCost}</span>`);
+    if (c.goldValue> 0) p.push(`<span class="cs cs-gold">💰${c.goldValue}</span>`);
+    if (c.attack   > 0) p.push(`<span class="cs cs-atk">⚔${c.attack}</span>`);
+    if (c.drawCards> 0) p.push(`<span class="cs cs-draw">🎴${c.drawCards}</span>`);
+    if (c.defense  > 0) p.push(`<span class="cs cs-def">🛡${c.defense}</span>`);
+    if (c.hp          ) p.push(`<span class="cs cs-hp">❤${c.hp}</span>`);
+    if (c.weight   > 0) p.push(`<span class="cs cs-wt">⚖${c.weight}</span>`);
+    if (c.strength    ) p.push(`<span class="cs cs-str">💪${c.strength}</span>`);
+    if (c.vp       > 0) p.push(`<span class="cs cs-vp">★${c.vp}</span>`);
+    if (c.guard    > 0) p.push(`<span class="cs cs-grd">👁${c.guard}</span>`);
+  }
   return p.join('');
 }
 
 /* ---- ゲームカード HTML ---- */
 function buildGameCard(card, opts = {}) {
-  const { size = 'sm', faceDown = false, count, showCost = false, selected = false, depleted = false, onClick } = opts;
+  const { size = 'sm', faceDown = false, count, showCost = false, selected = false, depleted = false, onClick, inHand = false } = opts;
   const cat = card.category || 'port';
   const cs  = CAT_STYLE[cat] || CAT_STYLE.port;
   const icon = SUBTYPE_ICON[card.subtype] || cs.icon || '?';
@@ -2923,9 +3413,9 @@ function buildGameCard(card, opts = {}) {
     return `<div class="gcard gcard-${size} gcard-facedown${selected?' gcard-selected':''}"${onClick?` onclick="${onClick}"`:''}${fdAttr}${fdHover}><div class="gcard-back-inner">?</div></div>`;
   }
 
-  const imgContain = card.image ? ' contain' : '';
+  const imgContain = (card.image && card.subtype === 'person') ? ' contain' : '';
   const imgHtml = card.image
-    ? `<img class="gcard-img${imgContain}" src="${card.image}" alt="${card.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gcard-img-ph" style="display:none">${icon}</div>`
+    ? `<img class="gcard-img${imgContain}" src="${card.image}" alt="${card.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gcard-img-ph" style="display:none">${icon}</div>`
     : `<div class="gcard-img-ph">${icon}</div>`;
 
   const countBadge = count !== undefined ? `<div class="gcard-count">${count}</div>` : '';
@@ -2935,7 +3425,7 @@ function buildGameCard(card, opts = {}) {
   const styleAttr  = ` style="--cat-border:${cs.border};--cat-bg:${cs.bg}"`;
 
   const iid = card.instanceId !== undefined ? ` data-iid="${card.instanceId}"` : '';
-  return `<div class="gcard gcard-${size}${selected?' gcard-selected':''}${depleted?' gcard-depleted':''}"${styleAttr}${clickAttr} data-cid="${card.id}"${iid} onmouseenter="showCardTooltip(event,this.dataset.cid,this.dataset.iid)" onmouseleave="hideCardTooltip()">${countBadge}${costBadge}<div class="gcard-img-wrap">${imgHtml}</div><div class="gcard-info"><div class="gcard-name">${card.name}</div><div class="gcard-stats">${buildCardStats(card)}</div></div></div>`;
+  return `<div class="gcard gcard-${size}${selected?' gcard-selected':''}${depleted?' gcard-depleted':''}"${styleAttr}${clickAttr} data-cid="${card.id}"${iid} onmouseenter="showCardTooltip(event,this.dataset.cid,this.dataset.iid)" onmouseleave="hideCardTooltip()">${countBadge}${costBadge}<div class="gcard-img-wrap">${imgHtml}</div><div class="gcard-info"><div class="gcard-name">${card.name}</div><div class="gcard-stats">${buildCardStats(card, inHand)}</div></div></div>`;
 }
 
 /* ---- 山札カード HTML (pile から top を表示) ---- */
@@ -3030,21 +3520,23 @@ function renderActionBar() {
 }
 
 /* ---- 海底神殿盤面 ---- */
-function renderTempleArea() {
+function renderTempleArea(targetId = 'g-temple-board') {
   const temple = GameState.temple;
-  const board  = document.getElementById('g-temple-board');
+  const board  = document.getElementById(targetId);
   const counts = document.getElementById('g-temple-counts');
-  if (!temple) return;
+  if (!temple || !board) return;
 
-  // 港・休息フェーズ中は海底神殿セクションを非表示
-  const templeSection = board.closest('.g-board-section') || board.parentElement;
-  if (GameState.phase === 'port' || GameState.phase === 'rest') {
-    templeSection.style.display = 'none';
-    return;
+  // 神殿フェーズのみg-temple-sectionを表示（他のフェーズではコンパクト表示のみ）
+  if (targetId === 'g-temple-board') {
+    const templeSection = document.getElementById('g-temple-section');
+    if (GameState.phase !== 'temple') {
+      if (templeSection) templeSection.style.display = 'none';
+      return;
+    }
+    if (templeSection) templeSection.style.display = '';
   }
-  templeSection.style.display = '';
 
-  counts.textContent = `モンスター山札 ${temple.monsterDeck.length}枚 ／ 秘宝山札 ${temple.relicDeck.length}枚`;
+  if (counts) counts.textContent = `モンスター山札 ${temple.monsterDeck.length}枚 ／ 秘宝山札 ${temple.relicDeck.length}枚`;
 
   if (GameState.phase !== 'temple') {
     // Non-temple phase: show simple card display
@@ -3079,17 +3571,15 @@ function renderTempleArea() {
       <span class="tbar-sep">=</span>
       <span class="tbar-item">実質 <span class="tbar-val ${combat.netPower >= 0 ? 'gold' : 'red'}">${combat.netPower}</span></span>
       <span class="tbar-sep">|</span>
-      <span class="tbar-item" style="color:var(--text3);font-size:.62rem">守護${combat.guardTotal} / 恐怖基礎${combat.darknessBase}${combat.fearMod !== 0 ? (combat.fearMod > 0 ? `+${combat.fearMod}` : `${combat.fearMod}`) : ''}${TempleState.extraFear ? '+連続'+TempleState.extraFear : ''}</span>
+      <span class="tbar-item" style="color:var(--text3);font-size:.78rem">守護${combat.guardTotal} / 恐怖${combat.fearBase}${TempleState.extraFear ? '（連続+'+TempleState.extraFear+'）' : ''}</span>
       ${bossBonusSpan}
-      <span class="tbar-sep">|</span>
-      <span class="tbar-item" style="color:var(--text3);font-size:.62rem">階層${temple.floor}</span>
     </div>`;
 
     if (explorers.length === 0) {
       html += `<div class="temple-no-explorer">探索者が手札にいません。神殿に入るには探索者カードが必要です。</div>`;
     } else {
-      const openBtnLabel = (temple.currentFaceUp && temple.currentIsRelicCard) ? '「戦闘する」' : '「神殿カードをオープンして戦闘する」';
-      html += `<div class="temple-instruction">探索者を選択して装備を割り当ててください。準備が整ったら${openBtnLabel}を押してください。</div>`;
+      const openBtnLabel = (temple.currentFaceUp && temple.currentIsRelicCard) ? '「戦闘する」' : '「海底神殿の深層へ進む」';
+      html += `<div class="temple-instruction">準備が整ったら海底神殿の深層へ進みましょう。時には断念して撤退する勇気も必要ですが…</div>`;
     }
 
     // Draw button (manual, only if drawCards available)
@@ -3104,13 +3594,14 @@ function renderTempleArea() {
     html += '<div class="temple-exp-row">';
     explorers.forEach(exp => {
 
-      const isSelected = TempleState.selectedExpId === exp.instanceId;
       const assign    = TempleState.assignments[exp.instanceId] || { weapon:null, armor:null, tool:null };
       const expPower  = (exp.attack||0) + [assign.weapon, assign.armor, assign.tool].filter(Boolean)
                           .reduce((s,i) => s+(i.attack||0)+(i.defense||0), 0);
-      html += `<div class="temple-exp-col${isSelected?' selected':''}" onclick="templeSelectExplorer(${exp.instanceId})">`;
+      html += `<div class="temple-exp-col">`;
+      html += `<div class="temple-exp-card-sec">`;
       html += buildGameCard(exp, { size:'sm' });
       html += `<div class="temple-exp-load">体力${exp.hp||0} ⚔${expPower}</div>`;
+      html += `</div>`;
       const slotDefs = [
         { key:'weapon', label:'⚔武器', item:assign.weapon },
         { key:'armor',  label:'🛡防具', item:assign.armor  },
@@ -3122,7 +3613,6 @@ function renderTempleArea() {
         html += `<span class="temple-slot-label">${label}</span>`;
         if (item) {
           html += `<span class="temple-slot-name">${item.name}</span>`;
-          html += `<button class="temple-unassign-btn" onclick="event.stopPropagation();templeUnassignSlot(${exp.instanceId},'${key}')">✕</button>`;
         } else {
           html += `<span class="temple-slot-empty">空き</span>`;
         }
@@ -3133,40 +3623,22 @@ function renderTempleArea() {
     });
     html += '</div>'; // temple-exp-row
 
-    // Available (unassigned) equipment
-    const availableItems = getEquipmentInHand();
-    if (availableItems.length > 0) {
-      const selLabel = TempleState.selectedExpId ? '（クリックで装備を変更）' : '（探索者を選択してから変更）';
-      html += `<div class="temple-items-label">未装備のカード${selLabel}</div>`;
-      html += '<div class="temple-items-row">';
-      availableItems.forEach(item => {
-        let cls = 'temple-item-wrap', clickAttr = '';
-        if (TempleState.selectedExpId) {
-          const selExp = p.hand.find(c => c.instanceId === TempleState.selectedExpId);
-          if (selExp) {
-            const gunOk = item.subtype !== 'gun' || selExp.canUseGun;
-            // 重量は個別判定: アイテムの重量 <= 探索者の体力
-            const fits  = (item.weight||0) <= (selExp.hp||0);
-            if (fits && gunOk) { cls += ' assignable'; clickAttr = ` onclick="templeAssignItem(${item.instanceId})"`;
-            } else             { cls += ' disabled'; }
-          } else { cls += ' disabled'; }
-        }
-        html += `<div class="${cls}"${clickAttr}>${buildGameCard(item, { size:'sm' })}</div>`;
-      });
-      html += '</div>';
-    }
 
-    // Action buttons
-    html += '<div class="rest-actions" style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px;">';
-    if (temple.currentCard) {
-      const alreadyOpen = temple.currentFaceUp && temple.currentIsRelicCard;
-      const combatBtnLabel = alreadyOpen ? '⚔ 戦闘する' : '🃏 神殿カードをオープンして戦闘する';
-      html += `<button id="temple-combat-btn" class="btn btn-gold btn-sm" ${explorers.length?'':'disabled'} onclick="openTempleCard()">${combatBtnLabel}</button>`;
-    } else {
-      html += `<span style="font-size:.7rem;color:var(--text3)">神殿に残りのカードはありません</span>`;
+    // Action buttons (combat screen: buttons moved to header; game screen: keep inline)
+    if (targetId === 'g-temple-board') {
+      html += '<div class="rest-actions" style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px;">';
+      if (temple.currentCard) {
+        const alreadyOpen = temple.currentFaceUp && temple.currentIsRelicCard;
+        const combatBtnLabel = alreadyOpen ? '⚔ 戦闘する' : '🃏 神殿カードをオープンして戦闘する';
+        html += `<button id="temple-combat-btn" class="btn btn-gold btn-sm" ${explorers.length?'':'disabled'} onclick="openTempleCard()">${combatBtnLabel}</button>`;
+      } else {
+        html += `<span style="font-size:.7rem;color:var(--text3)">神殿に残りのカードはありません</span>`;
+      }
+      if (!GameState.gameOver) html += `<button id="temple-endturn-btn" class="btn btn-cyan btn-sm" onclick="endTurn()">ターン終了 →</button>`;
+      html += '</div>';
+    } else if (!temple.currentCard) {
+      html += `<div style="font-size:.7rem;color:var(--text3);padding:6px 0;">神殿に残りのカードはありません</div>`;
     }
-    if (!GameState.gameOver) html += `<button id="temple-endturn-btn" class="btn btn-cyan btn-sm" onclick="endTurn()">ターン終了 →</button>`;
-    html += '</div>';
 
   } else if (subPhase === 'done') {
     const result = TempleState.combatResult;
@@ -3177,8 +3649,8 @@ function renderTempleArea() {
 
       if (result.type === 'treasure') {
         titleCls = 'win';
-        titleText = '✨ 宝物獲得！';
-        descText = `「${result.card.name}」を手に入れた。狂気カード1枚が捨て山に加わる。`;
+        titleText = `✨ 宝物獲得！「${result.card.name}」を手に入れた！`;
+        descText = result.card.vp ? `勝利点${result.card.vp}点を得る` : '宝物を手に入れた';
       } else if (result.type === 'relic') {
         titleCls = 'relic';
         titleText = '🌟 秘宝獲得！ゲーム終了！';
@@ -3186,12 +3658,12 @@ function renderTempleArea() {
       } else if (result.type === 'monster') {
         if (result.won) {
           titleCls = 'win';
-          titleText = '⚔ 勝利！';
-          descText = `「${result.card.name}」（強さ${result.monsterStrength}）を撃破。実質戦闘力 ${result.netPower}。狂気カード1枚追加。次の階層へ進む。`;
+          titleText = `⚔ 勝利！「${result.card.name}」を撃破！`;
+          descText = result.card.vp ? `勝利点${result.card.vp}点を得る` : '次の階層へ進む';
         } else {
           titleCls = 'lose';
-          titleText = '💀 敗北...';
-          descText = `「${result.card.name}」（強さ${result.monsterStrength}）に敗れた。実質戦闘力 ${result.netPower}。狂気カード2枚追加。モンスターは残る。`;
+          titleText = `💀 敗北...「${result.card.name}」に敗走`;
+          descText = '狂気の中で退路へ';
         }
       }
 
@@ -3199,11 +3671,11 @@ function renderTempleArea() {
       html += `<div class="temple-result-title ${titleCls}">${titleText}</div>`;
 
       if (result.type === 'monster') {
-        html += `<div class="temple-result-stats">
-          <span>戦闘力 <strong id="cstat-power" style="color:var(--gold2)" data-target="${result.power}">0</strong></span>
-          <span>恐怖ペナルティ <strong id="cstat-penalty" style="color:var(--red2)" data-target="${result.penalty}">0</strong></span>
-          <span>実質 <strong id="cstat-net" style="color:${result.won ? 'var(--gold2)' : 'var(--red2)'}" data-target="${result.netPower}">0</strong></span>
-          <span>vs 強さ <strong style="color:var(--red2)">${result.monsterStrength}</strong></span>
+        const netCol = result.won ? 'var(--gold2)' : 'var(--red2)';
+        html += `<div class="temple-result-stats" style="font-size:.9rem;gap:8px;">
+          <span>「${result.card.name}」（強さ<strong style="color:var(--red2)">${result.monsterStrength}</strong>）</span>
+          <span style="color:var(--text3)">vs</span>
+          <span>探索者（戦闘力<strong style="color:${netCol}">${result.netPower}</strong>）</span>
         </div>`;
       }
 
@@ -3224,7 +3696,10 @@ function renderTempleArea() {
     }
 
     html += '<div class="rest-actions" style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px;">';
-    if (!GameState.gameOver) html += `<button id="temple-endturn-btn" class="btn btn-cyan btn-sm" onclick="endTurn()">ターン終了 →</button>`;
+    if (!GameState.gameOver) {
+      const doneEndLabel = (result && result.type === 'monster' && !result.won) ? 'ターン終了 →' : 'ターン終了 →';
+      html += `<button id="temple-endturn-btn" class="btn btn-cyan btn-sm" onclick="endTurn()">${doneEndLabel}</button>`;
+    }
     // ev_chain_explore：勝利後の連続探索ボタン
     const chainEv = GameState.currentEvent;
     if (!GameState.gameOver && chainEv && chainEv.id === 'ev_chain_explore'
@@ -3236,6 +3711,259 @@ function renderTempleArea() {
 
   html += '</div>'; // temple-phase-panel
   board.innerHTML = html;
+}
+
+/* ---- コンバット画面ヘルパー ---- */
+function isOnCombatScreen() {
+  const el = document.getElementById('screen-combat');
+  return el && el.classList.contains('active');
+}
+
+function renderCombatLog() {
+  const el = document.getElementById('cbt-log-body');
+  if (!el) return;
+  const logs = [...GameState.log].reverse().slice(0, 40);
+  el.innerHTML = logs.map(l =>
+    `<div class="g-log-entry"><span class="g-log-icon">${l.playerIcon}</span><span class="g-log-msg">${l.message}</span></div>`
+  ).join('');
+}
+
+function renderCombatHeader() {
+  const el = document.getElementById('cbt-header');
+  if (!el) return;
+  const p = currentPlayer();
+  const floor = GameState.temple ? (GameState.temple.floor || 1) : 1;
+  const subPhase = TempleState ? TempleState.subPhase : '';
+  const temple = GameState.temple;
+
+  let mainBtnHtml = '';
+  if (subPhase === 'done') {
+    const result = TempleState.combatResult;
+    let endBtnLabel = 'ターン終了 →';
+    let endBtnExtraClass = '';
+    let endBtnOnclick = 'endTurn()';
+    if (result) {
+      if (result.type === 'relic')                               { endBtnLabel = '🏆 凱旋する'; endBtnExtraClass = ' relic-triumph'; }
+      else if (result.pendingRelic)                              { endBtnLabel = '✨ 秘宝を手にする！'; endBtnExtraClass = ' relic-triumph'; endBtnOnclick = 'claimPendingRelic()'; }
+      else if (result.type === 'treasure')                       endBtnLabel = '海底神殿から成果を得て帰還する';
+      else if (result.type === 'monster' && result.won)          endBtnLabel = '海底神殿から成果を得て帰還する';
+      else if (result.type === 'monster' && !result.won)         endBtnLabel = '海底神殿から撤退する';
+    }
+    // relicは gameOver=true でもボタンを表示する（「凱旋する」で結果画面へ手動遷移）
+    if (!GameState.gameOver || (result && result.type === 'relic'))
+      mainBtnHtml = `<button id="cbt-main-btn" class="cbt-hd-main-btn${endBtnExtraClass}" onclick="${endBtnOnclick}" style="opacity:0;pointer-events:none;transition:opacity .5s ease;">${endBtnLabel}</button>`;
+  } else if (subPhase === 'equip') {
+    const explorers = getExplorersInHand();
+    const hasExplorers = explorers.length > 0;
+    const alreadyOpen = temple && temple.currentFaceUp && temple.currentIsRelicCard;
+    const hasCard = temple && temple.currentCard;
+    const combatLabel = alreadyOpen ? '⚔ 戦闘する' : '🃏 海底神殿の深層へ進む';
+    if (hasCard)
+      mainBtnHtml = `<button id="cbt-main-btn" class="cbt-hd-main-btn" ${hasExplorers ? '' : 'disabled'} onclick="openTempleCard()">${combatLabel}</button>`;
+  }
+
+  const retreatBtn = (subPhase === 'equip')
+    ? `<button class="btn btn-ghost" style="margin-left:6px;font-size:.78rem;" onclick="endTurn()">海底神殿から撤退する</button>` : '';
+  el.innerHTML = `
+    <span class="cbt-player-icon">${p.icon}</span>
+    <span class="cbt-player-name">${p.name}</span>
+    ${mainBtnHtml}
+    ${retreatBtn}
+  `;
+}
+
+function renderCombatBody() {
+  if (TempleState && TempleState.subPhase === 'done') {
+    renderCombatResultBody();
+  } else {
+    renderTempleArea('cbt-body');
+  }
+}
+
+function renderCombatResultBody() {
+  const el = document.getElementById('cbt-body');
+  if (!el) return;
+  const result = TempleState.combatResult;
+  const temple = GameState.temple;
+  if (!result) { el.innerHTML = ''; return; }
+
+  // Explorers alongside monster
+  const explorers = getExplorersInHand();
+  let explorersHtml = '';
+  if (explorers.length > 0) {
+    explorersHtml = `<div class="cbt-result-explorers">
+      <div class="cbt-result-explorers-label">参戦した探索者</div>
+      <div class="cbt-result-explorers-cards">${explorers.map(exp => buildGameCard(exp, { size:'sm' })).join('')}</div>
+    </div>`;
+  }
+
+  // Card flip (face-down → face-up)
+  const faceDownHtml = buildGameCard(result.card, { size:'xxxl', faceDown:true });
+  const faceUpHtml   = buildGameCard(result.card, { size:'xxxl' });
+
+  // 居座りモンスターのみ表示（次のカード未確認は削除）
+  let staysHtml = '';
+  if (result.staysFaceUp && temple.currentCard && !GameState.gameOver) {
+    staysHtml = `<div class="temple-next-card">
+      <div class="temple-next-label" style="color:var(--red2)">このモンスターは居座る</div>
+      ${buildGameCard(temple.currentCard, { size:'lg' })}
+    </div>`;
+  }
+
+  // Result title / desc / button label
+  let titleCls='', titleText='', descText='', endBtnLabel='';
+  if (result.type === 'treasure') {
+    titleCls='win';
+    titleText=`✨ 宝物獲得！「${result.card.name}」を手に入れた！`;
+    descText=result.card.vp ? `勝利点${result.card.vp}点を得る` : '宝物を手に入れた';
+    endBtnLabel='海底神殿から成果を得て帰還する';
+  } else if (result.type === 'relic') {
+    titleCls='relic'; titleText=`🌟✨ 秘宝「${result.card.name}」獲得！✨🌟`;
+    descText=`ついに伝説の秘宝を手に入れた！ゲームが終了する。`;
+    endBtnLabel='🏆 凱旋する';
+  } else if (result.type === 'monster') {
+    if (result.won && result.pendingRelic) {
+      titleCls='win';
+      titleText=`⚔ 勝利！「${result.card.name}」を撃破！`;
+      descText=`🌟 秘宝「${result.pendingRelic.name}」への道が開かれた！`;
+      endBtnLabel='✨ 秘宝を手にする！';
+    } else if (result.won) {
+      titleCls='win';
+      titleText=`⚔ 勝利！「${result.card.name}」を撃破！`;
+      descText=result.card.vp ? `勝利点${result.card.vp}点を得る` : '次の階層へ進む';
+      endBtnLabel='海底神殿から成果を得て帰還する';
+    } else {
+      titleCls='lose';
+      titleText=`💀 敗北...「${result.card.name}」に敗走`;
+      descText='狂気の中で退路へ';
+      endBtnLabel='海底神殿から撤退する';
+    }
+  }
+
+  let statsHtml = '';
+  if (result.type === 'monster') {
+    const netCol = result.won ? 'var(--gold2)' : 'var(--red2)';
+    statsHtml = `<div class="temple-result-stats" style="font-size:.9rem;gap:8px;">
+      <span>「${result.card.name}」（強さ<strong style="color:var(--red2)">${result.monsterStrength}</strong>）</span>
+      <span style="color:var(--text3)">vs</span>
+      <span>探索者（戦闘力<strong style="color:${netCol}">${result.netPower}</strong>）</span>
+    </div>`;
+  }
+
+  const chainEv = GameState.currentEvent;
+  const chainBtn = (!GameState.gameOver && chainEv && chainEv.id==='ev_chain_explore'
+      && result.type==='monster' && result.won && !TempleState.chainUsed)
+    ? `<button class="btn btn-gold btn-sm" onclick="templeChainExplore()" style="margin-left:8px;">🔗 連続探索（次は恐怖+2）</button>` : '';
+
+  el.innerHTML = `
+    <div class="cbt-result-wrap">
+      <div class="cbt-result-main-row">
+        <div class="cbt-flip-container">
+          <div class="cbt-flipper" id="cbt-flipper">
+            <div class="cbt-flipper-back">${faceDownHtml}</div>
+            <div class="cbt-flipper-front">${faceUpHtml}</div>
+          </div>
+        </div>
+        ${staysHtml}
+        <div class="cbt-result-right-col">
+          ${explorersHtml}
+          <div class="cbt-result-bottom cbt-hidden" id="cbt-result-bottom">
+            ${result.type === 'relic'
+              ? `<div class="relic-result-title">${titleText}</div>
+                 <div class="relic-result-subtitle">${descText}</div>
+                 ${result.card.vp ? `<div class="relic-result-vp">🏅 勝利点 ${result.card.specialVP==='1per2Madness'?`${result.card.vp}点＋狂気2枚につき+1点`:`${result.card.vp}点`}を得る</div>` : ''}`
+              : `<div class="temple-result-title ${titleCls}">${titleText}</div>
+                 ${statsHtml}
+                 <div class="temple-result-desc">${descText}</div>
+                 ${chainBtn ? `<div style="padding-top:8px;">${chainBtn}</div>` : ''}`
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initCombatResultAnimation(result) {
+  // t=400ms: flip card face-up + flip sound
+  fxTimeout(() => {
+    const flipper = document.getElementById('cbt-flipper');
+    if (flipper) flipper.classList.add('flipped');
+    SE.flip();
+  }, 400);
+  // t=2800ms: reveal result section + sound/flash effects
+  fxTimeout(() => {
+    const bottom = document.getElementById('cbt-result-bottom');
+
+    if (result.type === 'relic') {
+      // === 秘宝：段階的な大演出 ===
+      // 第1波: 即座にフラッシュ＋サウンド
+      fxTimeout(() => { SE.relic(); flashScreen('rgba(255,230,80,0.75)', 400, 900); spawnRelicEffect(); }, 80);
+      // 第2波: パーティクル連打
+      fxTimeout(() => { spawnParticles('#ffd700', 30); flashScreen('rgba(255,255,255,0.5)', 200, 400); }, 500);
+      fxTimeout(() => { spawnParticles('#ffe066', 20); spawnRelicEffect(); }, 900);
+      fxTimeout(() => { spawnParticles('#ff99ff', 18); flashScreen('rgba(180,100,255,0.35)', 200, 500); }, 1400);
+      fxTimeout(() => { spawnParticles('#aaffee', 22); flashScreen('rgba(255,230,80,0.6)', 300, 600); }, 1900);
+      // 第3波: 背景オーバーレイ＋タイトル表示
+      fxTimeout(() => {
+        const bg = document.createElement('div');
+        bg.className = 'relic-overlay-bg';
+        bg.id = 'relic-overlay-bg';
+        document.body.appendChild(bg);
+        fxTimeout(() => { const b = document.getElementById('relic-overlay-bg'); if(b) b.remove(); }, 3000);
+        if (bottom) bottom.classList.remove('cbt-hidden');
+        spawnParticles('#ffd700', 25);
+        fxTimeout(() => { SE.relic(); flashScreen('rgba(255,230,80,0.5)', 300, 700); spawnParticles('#ffffff', 15); }, 200);
+      }, 2400);
+      // ボタン表示: タイトル出現から2秒後
+      fxTimeout(() => {
+        const btn = document.getElementById('cbt-main-btn');
+        if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; btn.focus(); }
+      }, 4600);
+    } else {
+      if (bottom) bottom.classList.remove('cbt-hidden');
+      // ボタンは結果表示から1秒後に表示
+      fxTimeout(() => {
+        const btn = document.getElementById('cbt-main-btn');
+        if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; btn.focus(); }
+      }, 1000);
+      // play sounds & flash
+      if (result.type === 'monster') {
+        triggerCountUps();
+        if (result.won) {
+          fxTimeout(() => { SE.win(); flashScreen('rgba(0,200,80,0.4)'); }, 80);
+        } else {
+          fxTimeout(() => { SE.lose(); flashScreen('rgba(200,20,20,0.45)'); }, 80);
+          fxTimeout(() => { SE.madness(); flashScreen('rgba(130,0,200,0.35)'); }, 550);
+        }
+      } else if (result.type === 'treasure') {
+        fxTimeout(() => { SE.treasure(); flashScreen('rgba(200,160,0,0.4)'); spawnParticles('#ffd700', 14); }, 80);
+      }
+    }
+  }, 2800);
+}
+
+function renderCombatScreen() {
+  const cbtTb = document.getElementById('cbt-turnbar');
+  if (cbtTb) {
+    const rr = String(GameState.round).padStart(2,'0');
+    const tt = String(GameState.turn).padStart(2,'0');
+    cbtTb.textContent = `神殿フェーズ　ラウンド${rr} ターン${tt}`;
+  }
+  renderCombatHeader();
+  renderCombatBody();
+  renderCombatLog();
+}
+
+function abortCombatToGame() {
+  if (!TempleState || TempleState.subPhase !== 'equip') return;
+  GameState.phase = 'action_select';
+  TempleState = {
+    subPhase:'equip', assignments:{}, selectedExpId:null,
+    combatResult:null, drawAvailable:0, chainUsed:false, extraFear:0
+  };
+  showScreen('game-screen');
+  renderGameScreen();
 }
 
 function templeChainExplore() {
@@ -3252,7 +3980,7 @@ function templeChainExplore() {
   });
   autoAssignEquipment();
   addLog('🔗 連続探索！次のカードに挑戦（恐怖+2）');
-  renderGameScreen();
+  if (isOnCombatScreen()) { renderCombatScreen(); } else { renderGameScreen(); }
 }
 
 /* ---- 港盤面 ---- */
@@ -3299,10 +4027,6 @@ function renderPortArea() {
   port.portPiles.forEach(pile => { html += buildPortPileHTML(pile); });
   html += '</div></div>';
 
-  html += '<div class="g-port-group"><div class="g-port-group-label">スターターカード</div><div class="g-port-pile-row">';
-  port.starterPiles.forEach(pile => { html += buildPortPileHTML(pile); });
-  html += '</div></div>';
-
   if (GameState.phase === 'port') {
     html += `<div class="rest-actions" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">
       <button id="port-endturn-btn" class="btn btn-cyan btn-sm" onclick="endTurn()">ターン終了 →</button>
@@ -3339,43 +4063,79 @@ function renderHandArea() {
       ? (assignedCount > 0 ? `${available}/${total}` : `${total}`)
       : undefined;
     const display  = instances[0];
-    const cardHtml = buildGameCard(display, { size: 'sm', depleted, count: countLabel });
-    if (showRemove && display.category === 'madness') {
-      return `<div class="gcard-hand-wrap">${cardHtml}<button class="port-remove-btn" onclick="portRemoveMadness(${instances[0].instanceId})">🗑 狂気を除去</button></div>`;
-    }
-    return cardHtml;
+    const cardHtml = buildGameCard(display, { size: 'xl', depleted, count: countLabel, inHand: true });
+    const inner = showRemove && display.category === 'madness'
+      ? `<div class="gcard-hand-wrap">${cardHtml}<button class="port-remove-btn" onclick="portRemoveMadness(${instances[0].instanceId})">🗑 狂気を除去</button></div>`
+      : cardHtml;
+    const stkClass = total >= 3 ? ' stk-3' : total === 2 ? ' stk-2' : '';
+    const overlay  = total > 1 ? `<div class="g-hand-count-hover">×${total}</div>` : '';
+    return `<div class="g-hand-card-group${stkClass}">${inner}${overlay}</div>`;
   }).join('');
 
   const totalGold  = p.hand.reduce((s, c) => s + (c.goldValue  || 0), 0);
   const totalAtk   = p.hand.reduce((s, c) => s + (c.attack     || 0) + (c.defense || 0), 0);
   const totalDraw  = p.hand.reduce((s, c) => s + (c.drawCards  || 0), 0);
-  // 実質戦闘力（恐怖ペナルティ考慮）
-  let netAtk;
-  if (GameState.phase === 'temple' && TempleState.subPhase === 'equip') {
-    netAtk = calcTempleCombat().netPower;
-  } else {
-    const totalGuard = p.hand.reduce((s, c) => s + (c.guard || 0), 0);
-    const floor = GameState.temple ? GameState.temple.floor : 1;
-    const darknessBase = Math.min(floor * 2, 6);
-    const fearPenalty = Math.max(0, darknessBase - totalGuard * 2);
-    netAtk = totalAtk - fearPenalty;
+  const explorerCount = p.hand.filter(c => c.subtype === 'person').length;
+
+  // 恐怖ペナルティ計算（一律恐怖2、守護1点=1恐怖相殺、残恐怖×2がペナルティ）
+  const guardCards = p.hand.filter(c => c.guard > 0);
+  const totalGuard = guardCards.reduce((s, c) => s + (c.guard || 0), 0);
+  const netFear = Math.max(0, 2 - totalGuard);
+  const fearPenalty = 2 * netFear;
+  const netAtk = totalAtk - fearPenalty;
+
+  // 守護表示テキスト（守護N×M枚、または守護合計N）
+  let guardDisplay = '守護なし';
+  if (guardCards.length > 0) {
+    const guardVal = guardCards[0].guard;
+    const allSame = guardCards.every(c => c.guard === guardVal);
+    guardDisplay = allSame ? `守護${guardVal}×${guardCards.length}枚` : `守護合計${totalGuard}`;
   }
-  const totalsEl = document.getElementById('g-hand-totals');
-  if (totalsEl) {
-    totalsEl.innerHTML =
-      `<span class="g-hand-total g-ht-gold">💰 合計金貨 <span class="g-hand-total-val">${totalGold}</span></span>` +
-      `<span class="g-hand-total g-ht-atk">⚔ 戦闘力 <span class="g-hand-total-val">${netAtk}</span><span style="font-size:.6rem;color:var(--text3)">（合計${totalAtk}）</span></span>` +
-      (totalDraw > 0 ? `<span class="g-hand-total g-ht-draw">+ドロー <span class="g-hand-total-val">${totalDraw}</span></span>` : '');
+  const penaltySub = netFear === 0
+    ? `（恐怖2 / ${guardDisplay}で全相殺）`
+    : `（恐怖2 / ${guardDisplay} → 残恐怖${netFear}）`;
+  const penaltyValClass = netFear === 0 ? 'g-hi-penalty-zero' : 'g-hi-penalty-bad';
+
+  // フォーミュラ表示（案B: 探索者→金貨→戦闘力順、ホバーツールチップ付き）
+  const infoEl = document.getElementById('g-hand-info-bar');
+  if (infoEl) {
+    const tip = (t) => ` data-tip="${t}" onmouseenter="showDataTooltip(event,this.dataset.tip)" onmouseleave="hideCardTooltip()"`;
+    const explorerTip = `探索者カード枚数: ${explorerCount}人&#10;神殿探索には探索者が必要です`;
+    const goldTip     = `金貨合計: ${totalGold}G&#10;港フェーズで装備・探索者カードを購入できます`;
+    const combatTip   = `実質戦闘力: ${netAtk}&#10;攻撃合計${totalAtk} ー 恐怖ペナルティ${fearPenalty}&#10;${penaltySub.replace(/（|）/g,'')}`;
+    infoEl.innerHTML =
+      `<div class="g-hi-block"${tip(explorerTip)}>
+        <span class="g-hi-label">探索者</span>
+        <span class="g-hi-val g-hi-expl">${explorerCount}人</span>
+      </div>` +
+      `<div class="g-hi-block"${tip(goldTip)}>
+        <span class="g-hi-label">金貨</span>
+        <span class="g-hi-val g-hi-gold">${totalGold}</span>
+      </div>` +
+      `<div class="g-hi-block"${tip(combatTip)}>
+        <span class="g-hi-label">⚔ 実質戦闘力</span>
+        <div class="g-hi-atk-detail">
+          <div class="g-hi-atk-row">
+            <span class="g-hi-val g-hi-atk">${netAtk}</span>
+            <span class="g-hi-penalty">ー 恐怖ペナルティ <span class="${penaltyValClass}">${fearPenalty}</span></span>
+          </div>
+          <div class="g-hi-formula">${penaltySub}</div>
+        </div>
+      </div>` +
+      (totalDraw > 0 ? `<div class="g-hi-block"${tip(`+ドロー: ${totalDraw}枚&#10;神殿探索時に追加でカードを${totalDraw}枚引けます`)}><span class="g-hi-label">+ドロー</span><span class="g-hi-val g-hi-draw">${totalDraw}</span></div>` : '');
   }
 }
 
 /* ---- ログパネル ---- */
 function renderLogPanel() {
-  const el   = document.getElementById('g-log-body');
   const logs = [...GameState.log].reverse().slice(0, 40);
-  el.innerHTML = logs.map(l =>
+  const html = logs.map(l =>
     `<div class="g-log-entry"><span class="g-log-icon">${l.playerIcon}</span><span class="g-log-msg">${l.message}</span></div>`
   ).join('');
+  ['g-log-body', 'cbt-log-body', 'port-log-body', 'rest-log-body'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
 }
 
 /* ---- フォーカスユーティリティ ---- */
@@ -3391,9 +4151,8 @@ function renderGameScreen() {
   renderActionBar();
   renderWatchControls();
   renderEventBar();
+  renderTempleStatus();
   renderTempleArea();
-  renderPortArea();
-  renderRestArea();
   renderHandArea();
   renderLogPanel();
 }
@@ -3447,12 +4206,12 @@ function showDataTooltip(event, text) {
   if (!tip) return;
   const display = (text || '').replace(/&#10;/g, '\n');
   tip.innerHTML = `<div style="white-space:pre-line;color:var(--text2);line-height:1.7">${display}</div>`;
-  const r = event.currentTarget.getBoundingClientRect();
   const W = 220;
-  let left = r.left + r.width / 2 - W / 2;
-  left = Math.max(4, Math.min(left, window.innerWidth - W - 4));
-  const above = r.top > 230;
-  tip.style.cssText = `display:block;left:${left}px;top:${above ? r.top - 8 : r.bottom + 8}px;transform:${above ? 'translateY(-100%)' : 'none'};width:${W}px`;
+  let left = event.clientX + 16;
+  let top  = event.clientY + 16;
+  if (left + W > window.innerWidth  - 4) left = event.clientX - W - 16;
+  if (top  + 200 > window.innerHeight)   top  = Math.max(4, window.innerHeight - 204);
+  tip.style.cssText = `display:block;left:${Math.max(4,left)}px;top:${top}px;width:${W}px`;
 }
 
 /* ---- 港フェーズ ---- */
@@ -3471,7 +4230,6 @@ function enterPortPhase() {
   if (PortState.hasPsychiatrist && p.hand.some(c => c.category === 'madness')) {
     addLog('精神科医が狂気カードを除去できます');
   }
-  renderGameScreen();
 }
 
 function getPortCostMod() {
@@ -3486,7 +4244,7 @@ function buyPortCard(cardId) {
   if (GameState.phase !== 'port' || PortState.buysLeft <= 0) return;
   const port = GameState.port;
   const p    = currentPlayer();
-  const pile = [...port.explorerPiles, ...port.portPiles, ...port.starterPiles].find(pl => pl.cardId === cardId);
+  const pile = [...port.explorerPiles, ...port.portPiles].find(pl => pl.cardId === cardId);
   if (!pile) return;
   const base = CARD_DB.map[cardId];
   if (!base) return;
@@ -3500,8 +4258,8 @@ function buyPortCard(cardId) {
   PortState.buysLeft--;
   addLog(`${base.name} を購入 ${effectiveCost}G（残り金貨: ${PortState.goldLeft}G / 残り購入: ${PortState.buysLeft}）`);
   SE.buy();
-  renderGameScreen();
-  focusEl('port-endturn-btn');
+  isOnPortScreen() ? renderPortScreen() : renderGameScreen();
+  if (PortState.buysLeft === 0) focusEl('port-end-btn');
 }
 
 function portRemoveMadness(instanceId) {
@@ -3513,18 +4271,17 @@ function portRemoveMadness(instanceId) {
   p.exile.push(removed);
   PortState.hasPsychiatrist = false;
   addLog('精神科医が狂気カードを除外（デッキから永久に取り除く）');
-  renderGameScreen();
-  focusEl('port-endturn-btn');
+  isOnPortScreen() ? renderPortScreen() : renderGameScreen();
 }
 
 function doAction(type) {
   if (GameState.phase !== 'action_select') return;
-  const labels = { port:'港を訪れる', temple:'海底神殿に入る', rest:'休息する' };
+  const labels = { port:'港を訪れる', temple:'海底神殿を探索する', rest:'休息する' };
   GameState.phase = type;
   addLog(`【${labels[type]}】を選択`);
-  if (type === 'port') enterPortPhase();
+  if (type === 'port')   { enterPortPhase(); showScreen('screen-port'); renderPortScreen(); }
   else if (type === 'temple') enterTemplePhase();
-  else if (type === 'rest') enterRestPhase();
+  else if (type === 'rest')  { enterRestPhase(); showScreen('screen-rest'); renderRestScreen(); }
   else renderGameScreen();
 }
 
@@ -3537,7 +4294,6 @@ function enterRestPhase() {
   const hasPsychiatrist = p.hand.some(c => c.removeMadness);
   RestState = { goldLeft: totalGold, discardSelected: [], discardMode: null, discardDone: false, hasPsychiatrist, psychiatristUsed: false, springUsed: false };
   addLog(`休息 — 合計金貨 ${totalGold}G`);
-  renderGameScreen();
 }
 
 function restToggleDiscard(instanceId) {
@@ -3551,7 +4307,7 @@ function restToggleDiscard(instanceId) {
   if (idx !== -1) {
     sel.splice(idx, 1);
     if (sel.length === 0) RestState.discardMode = null;
-    renderRestArea(); return;
+    isOnRestScreen() ? renderRestScreen() : renderRestArea(); return;
   }
   const mode = isMadness ? 'madness' : 'normal';
   if (RestState.discardMode && RestState.discardMode !== mode) {
@@ -3561,7 +4317,7 @@ function restToggleDiscard(instanceId) {
   if (sel.length >= maxDiscard) { addLog(`最大${maxDiscard}枚まで選択できます`); renderLogPanel(); return; }
   sel.push(instanceId);
   RestState.discardMode = mode;
-  renderRestArea();
+  isOnRestScreen() ? renderRestScreen() : renderRestArea();
   if (sel.length === 2) focusEl('rest-confirm-btn');
 }
 
@@ -3579,9 +4335,8 @@ function restConfirmDiscard() {
   RestState.discardSelected = [];
   RestState.discardMode = null;
   RestState.discardDone = true;
-  renderGameScreen();
-  const nextBtn = document.querySelector('.rest-exp-wrap button:not([disabled])') || document.getElementById('rest-endturn-btn');
-  if (nextBtn) nextBtn.focus();
+  isOnRestScreen() ? renderRestScreen() : renderGameScreen();
+  focusEl('rest-end-btn');
 }
 
 function restUseSpring() {
@@ -3597,8 +4352,7 @@ function restUseSpring() {
   });
   RestState.springUsed = true;
   addLog(`💧 回復の泉：狂気 ${madnessCards.length} 枚を全て除外`);
-  renderGameScreen();
-  focusEl('rest-endturn-btn');
+  isOnRestScreen() ? renderRestScreen() : renderGameScreen();
 }
 
 function restUsePsychiatrist() {
@@ -3612,8 +4366,7 @@ function restUsePsychiatrist() {
   });
   RestState.psychiatristUsed = true;
   addLog(`🧠 精神科医：狂気 ${madnessCards.length} 枚を全て除外`);
-  renderGameScreen();
-  focusEl('rest-endturn-btn');
+  isOnRestScreen() ? renderRestScreen() : renderGameScreen();
 }
 
 function getTrainingCost() {
@@ -3633,14 +4386,12 @@ function restEnhanceExplorer(instanceId) {
   if (!exp || exp.subtype !== 'person') return;
   const bonus = getTrainingBonus();
   RestState.goldLeft -= cost;
+  const isFirstTrain = !exp.enhanced;
   exp.attack = (exp.attack || 0) + bonus;
+  if (isFirstTrain) exp.hp = (exp.hp || 0) + 1;
   exp.enhanced = (exp.enhanced || 0) + bonus;
-  addLog(`訓練：${exp.name} 攻撃力 +${bonus}（残り ${RestState.goldLeft}G）`);
-  renderRestArea();
-  renderLogPanel();
-  const sameBtn = document.getElementById(`rest-enhance-${instanceId}`);
-  const nextBtn = (sameBtn && !sameBtn.disabled) ? sameBtn : document.getElementById('rest-endturn-btn');
-  if (nextBtn) nextBtn.focus();
+  addLog(`訓練：${exp.name} 攻撃力 +${bonus}${isFirstTrain ? '・体力 +1' : ''}（残り ${RestState.goldLeft}G）`);
+  if (isOnRestScreen()) { renderRestScreen(); } else { renderRestArea(); renderLogPanel(); }
 }
 
 function renderRestArea() {
@@ -3748,6 +4499,279 @@ function renderRestArea() {
   el.innerHTML = html;
 }
 
+/* ===== PORT SCREEN RENDERERS ===== */
+function isOnPortScreen() {
+  const el = document.getElementById('screen-port');
+  return el && el.classList.contains('active');
+}
+
+function renderPortScreen() {
+  const rr = String(GameState.round).padStart(2,'0');
+  const tt = String(GameState.turn).padStart(2,'0');
+  const tb = document.getElementById('port-turnbar');
+  if (tb) tb.textContent = `港フェーズ　ラウンド${rr} ターン${tt}`;
+  renderPortHeader();
+
+  renderPortBody();
+  renderPortLog();
+}
+
+function renderPortHeader() {
+  const el = document.getElementById('port-header');
+  if (!el) return;
+  const p = currentPlayer();
+  const gold = PortState.goldLeft;
+  const buys = PortState.buysLeft;
+  const hasPsych = PortState.hasPsychiatrist;
+  const madCards = p.hand.filter(c => c.category === 'madness');
+  const madCount = madCards.length;
+  const psychHtml = hasPsych
+    ? `<button class="btn btn-cyan btn-sm" onclick="portRemoveAllMadness()" ${madCount===0?'disabled':''}>🧠 狂気カード除去（精神科医）${madCount>0?` ×${madCount}`:''}</button>` : '';
+  el.innerHTML = `
+    <div class="port-hd-player">
+      <span class="port-hd-icon">${p.icon}</span>
+      <span class="port-hd-name">${p.name}</span>
+      <button id="port-end-btn" class="port-hd-end-btn" onclick="endTurn()">港から帰還する →</button>
+    </div>
+    <div class="port-hd-stats">
+      <span><span class="port-hd-label">残り金貨</span><span class="port-hd-gold">${gold}💰</span></span>
+      <span><span class="port-hd-label">残り購入</span><span class="port-hd-buys">${buys}🛒</span></span>
+      ${psychHtml}
+    </div>
+  `;
+}
+
+function portRemoveAllMadness() {
+  if (GameState.phase !== 'port' || !PortState.hasPsychiatrist) return;
+  const p = currentPlayer();
+  const madCards = p.hand.filter(c => c.category === 'madness');
+  if (madCards.length === 0) { addLog('手札に狂気カードがありません'); renderLogPanel(); return; }
+  madCards.forEach(card => {
+    const idx = p.hand.indexOf(card);
+    if (idx !== -1) { const [removed] = p.hand.splice(idx, 1); p.exile.push(removed); }
+  });
+  PortState.hasPsychiatrist = false;
+  addLog(`精神科医が狂気カード ${madCards.length} 枚を除外（デッキから永久に取り除く）`);
+  isOnPortScreen() ? renderPortScreen() : renderGameScreen();
+}
+
+function renderPortHand() {
+  const el = document.getElementById('port-hand');
+  if (!el) return;
+  const p = currentPlayer();
+  const goldTotal = p.hand.reduce((s,c)=>s+(c.goldValue||0),0);
+  const cardsHtml = p.hand.map(c => buildGameCard(c, { size:'lg' })).join('');
+  el.innerHTML = `
+    <div class="port-hand-title">手札（${p.hand.length}枚）</div>
+    <div class="port-hand-cards">${cardsHtml}</div>
+    <div class="port-hand-totals">
+      <span class="port-hand-total-item">💰 金貨合計: <strong style="color:var(--gold2)">${goldTotal}</strong></span>
+    </div>
+  `;
+}
+
+function renderPortBody() {
+  const el = document.getElementById('port-body');
+  if (!el) return;
+  const port = GameState.port;
+  if (!port) { el.innerHTML = ''; return; }
+  const gold = PortState.goldLeft;
+  const buys = PortState.buysLeft;
+  const costMod = getPortCostMod();
+
+  let html = '';
+  const groups = [
+    { label: '探索者', piles: port.explorerPiles },
+    { label: '武器・防具・道具', piles: port.portPiles },
+  ];
+  groups.forEach(g => {
+    if (!g.piles || !g.piles.length) return;
+    html += `<div class="port-section-title">${g.label}</div><div class="port-piles-grid">`;
+    g.piles.forEach(pile => {
+      const base = CARD_DB.map[pile.cardId];
+      if (!base) return;
+      const empty = !pile.unlimited && pile.cards.length === 0;
+      if (empty) {
+        html += `<div class="port-pile-wrap-scr cant">
+          ${buildGameCard(base, { size:'lg', depleted:true })}
+          <button class="port-pile-buy-btn" disabled>売切</button>
+          <span class="port-pile-count">0枚</span>
+        </div>`;
+        return;
+      }
+      const effectiveCost = Math.max(1, base.buyCost + costMod);
+      const canBuy = effectiveCost <= gold && buys > 0;
+      const count = pile.unlimited ? '∞' : pile.cards.length;
+      const costLabel = costMod !== 0 ? `${effectiveCost}G` : `${base.buyCost}G`;
+      html += `<div class="port-pile-wrap-scr${canBuy?'':' cant'}">
+        ${buildGameCard(base, { size:'lg', count })}
+        <button class="port-pile-buy-btn" ${canBuy?`onclick="buyPortCard('${pile.cardId}')"`:' disabled'}>購入 ${costLabel}</button>
+        <span class="port-pile-count">${pile.unlimited ? '∞' : pile.cards.length}枚</span>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html || '<div style="color:var(--text3);font-size:.8rem">購入可能なカードはありません</div>';
+}
+
+function renderPortLog() {
+  const el = document.getElementById('port-log-body');
+  if (!el) return;
+  const logs = [...GameState.log].reverse().slice(0,40);
+  el.innerHTML = logs.map(l=>`<div class="g-log-entry"><span class="g-log-icon">${l.playerIcon}</span><span class="g-log-msg">${l.message}</span></div>`).join('');
+}
+
+/* ===== REST SCREEN RENDERERS ===== */
+function isOnRestScreen() {
+  const el = document.getElementById('screen-rest');
+  return el && el.classList.contains('active');
+}
+
+function renderRestScreen() {
+  const rr = String(GameState.round).padStart(2,'0');
+  const tt = String(GameState.turn).padStart(2,'0');
+  const tb = document.getElementById('rest-turnbar');
+  if (tb) tb.textContent = `休息フェーズ　ラウンド${rr} ターン${tt}`;
+  renderRestHeader();
+  renderRestHandScr();
+  renderRestBodyScr();
+  renderRestLog();
+}
+
+function renderRestHeader() {
+  const el = document.getElementById('rest-header');
+  if (!el) return;
+  const p = currentPlayer();
+  const sel = RestState.discardSelected || [];
+  const maxDiscard = (GameState.currentEvent && GameState.currentEvent.id === 'ev_rest_night') ? 3 : 2;
+  const remaining = Math.max(0, maxDiscard - sel.length);
+  el.innerHTML = `
+    <div class="rest-hd-player">
+      <span class="rest-hd-icon">${p.icon}</span>
+      <span class="rest-hd-name">${p.name}</span>
+      <button id="rest-end-btn" class="rest-hd-end-btn" onclick="endTurn()">休息を終える →</button>
+    </div>
+    <div class="rest-hd-status">
+      <span><span class="rest-hd-label">捨て残り</span><span class="rest-hd-remain">${remaining}枚</span></span>
+    </div>
+  `;
+}
+
+function renderRestHandScr() {
+  const el = document.getElementById('rest-hand');
+  if (!el) return;
+  const p = currentPlayer();
+  const selected = RestState.discardSelected || [];
+  const maxDiscard = (GameState.currentEvent && GameState.currentEvent.id === 'ev_rest_night') ? 3 : 2;
+  const done = RestState.discardDone || false;
+  const cards = p.hand;
+  const cardsHtml = cards.map(c => {
+    const isSel = selected.includes(c.instanceId);
+    const isMadness = c.category === 'madness';
+    const modeOk = !RestState.discardMode || RestState.discardMode === (isMadness ? 'madness' : 'normal');
+    const canSelect = !done && (isSel || (modeOk && selected.length < maxDiscard));
+    const wrapCls = `rest-lg-wrap${isSel?' selected':''}${(!canSelect&&!isSel)?' cant':''}`;
+    const badge = isMadness ? '<span class="rest-madness-badge">狂気</span>' : '';
+    return `<div class="${wrapCls}" onclick="${(canSelect||isSel)&&!done?`restToggleDiscard(${c.instanceId})`:''}">
+      ${buildGameCard(c, { size:'lg', selected: isSel })}
+      <span class="rest-lg-label">${isSel?'✓ 捨てる':''}${badge}</span>
+    </div>`;
+  }).join('');
+  el.innerHTML = `
+    <div class="rest-hand-title">手札（${cards.length}枚）${!done?'— クリックして捨て札に追加':''}</div>
+    <div class="rest-hand-cards">${cardsHtml}</div>
+  `;
+}
+
+function renderRestBodyScr() {
+  const el = document.getElementById('rest-body');
+  if (!el) return;
+  const p = currentPlayer();
+  let html = '';
+
+  // 精神科医
+  if (RestState.hasPsychiatrist) {
+    const madnessCount = p.hand.filter(c => c.category === 'madness').length;
+    if (RestState.psychiatristUsed) {
+      html += `<div class="rest-psychiatrist-bar">🧠 <strong>精神科医探索者</strong>（使用済み）：狂気カードを全て除外しました</div>`;
+    } else {
+      html += `<div class="rest-psychiatrist-bar">
+        <button class="btn btn-cyan" style="font-size:.9rem;font-weight:700;padding:6px 16px;" onclick="restUsePsychiatrist()" ${madnessCount===0?'disabled':''}>狂気カードを除去する</button>
+        <span>🧠 <strong>精神科医探索者</strong>：手札の狂気カード（${madnessCount}枚）を全て除外できます</span>
+      </div>`;
+    }
+  }
+
+  // 破棄確定ボタン
+  const sel = RestState.discardSelected || [];
+  if (!RestState.discardDone) {
+    const btnLabel = sel.length > 0 ? `選択した ${sel.length} 枚を破棄して除外` : '破棄せずに進む';
+    html += `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;">
+      <button id="rest-confirm-btn" class="btn btn-${sel.length > 0 ? 'gold' : 'ghost'} btn-sm" onclick="restConfirmDiscard()">${btnLabel}</button>
+      ${sel.length > 0 ? `<span style="font-size:.63rem;color:var(--red2)">${sel.length}枚選択中</span>` : ''}
+    </div>`;
+  } else {
+    html += `<div style="font-size:.75rem;color:var(--text3);padding:4px 0;">破棄は完了しました</div>`;
+  }
+
+  // 訓練セクション
+  const trainCost = getTrainingCost();
+  const trainBonus = getTrainingBonus();
+  const explorers = p.hand.filter(c => c.subtype === 'person');
+  if (explorers.length > 0) {
+    html += `<div class="port-section-title">⬆ 訓練（${trainCost}G消費・攻撃力+${trainBonus}）— 残り金貨: <strong style="color:var(--gold2)">${RestState.goldLeft}G</strong></div>`;
+    html += '<div style="display:flex;flex-wrap:wrap;gap:10px;">';
+    explorers.forEach(exp => {
+      html += `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        ${buildGameCard(exp, { size:'lg' })}
+        <div style="font-size:.65rem;color:var(--text2);">攻撃力 ${exp.attack||0}${exp.enhanced>0?` (訓練+${exp.enhanced})`:''}</div>
+        <button id="rest-enhance-${exp.instanceId}" class="btn btn-gold btn-sm" ${RestState.goldLeft >= trainCost ? '' : 'disabled'} onclick="restEnhanceExplorer(${exp.instanceId})">⬆ +${trainBonus} (${trainCost}G)</button>
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  // 回復の泉イベント
+  const ev = GameState.currentEvent;
+  if (ev && ev.id === 'ev_recovery_spring') {
+    const madCount = p.hand.filter(c => c.category === 'madness').length;
+    if (RestState.springUsed) {
+      html += `<div class="rest-spring-bar">💧 <strong>回復の泉</strong>（使用済み）：全狂気カードを除外しました</div>`;
+    } else {
+      html += `<div class="rest-spring-bar">
+        💧 <strong>回復の泉</strong>：イベント効果で狂気カード（${madCount}枚）を全て無料で除去できます
+        <button class="btn btn-cyan btn-sm" style="margin-left:auto" onclick="restUseSpring()" ${madCount===0?'disabled':''}>除去する</button>
+      </div>`;
+    }
+  }
+
+  el.innerHTML = html;
+}
+
+function renderRestLog() {
+  const el = document.getElementById('rest-log-body');
+  if (!el) return;
+  const logs = [...GameState.log].reverse().slice(0,40);
+  el.innerHTML = logs.map(l=>`<div class="g-log-entry"><span class="g-log-icon">${l.playerIcon}</span><span class="g-log-msg">${l.message}</span></div>`).join('');
+}
+
+/* ===== TEMPLE STATUS (compact, for game screen) ===== */
+function renderTempleStatus() {
+  const el = document.getElementById('g-temple-status');
+  if (!el) return;
+  const temple = GameState.temple;
+  if (!temple || GameState.phase === 'temple') { el.innerHTML = ''; return; }
+  const cardHtml = temple.currentCard
+    ? buildGameCard(temple.currentCard, { size:'sm', faceDown: !temple.currentFaceUp })
+    : '<div style="font-size:.68rem;color:var(--text3)">カードなし</div>';
+  el.innerHTML = `<div class="g-temple-status-bar">
+    <span class="g-ts-label">🏛 神殿</span>
+    <span class="g-ts-floor">階層${temple.floor||1}</span>
+    <span class="g-ts-counts">モンスター${temple.monsterDeck.length}枚 / 秘宝${temple.relicDeck.length}枚</span>
+    ${cardHtml}
+  </div>`;
+}
+
 /* ================================================================
    Step 8: AI プレイヤー
 ================================================================ */
@@ -3792,12 +4816,12 @@ function renderWatchControls() {
   if (!isWatchMode()) { el.style.display = 'none'; return; }
   el.style.display = 'flex';
   const speedBtns = AI_SPEEDS.map((s, i) =>
-    `<button class="btn btn-sm ${i === _aiSpeedIdx ? 'btn-cyan' : 'btn-ghost'}" onclick="setAiSpeedIdx(${i})">${s.label}</button>`
+    `<button class="btn btn-sm ${i === _aiSpeedIdx ? '' : 'btn-ghost'}" onclick="setAiSpeedIdx(${i})">${s.label}</button>`
   ).join('');
   el.innerHTML = `
     <span style="font-size:.63rem;color:var(--text3);margin-right:2px;">観戦モード</span>
     <span style="font-size:.63rem;color:var(--text3);">速度：</span>${speedBtns}
-    <button id="g-watch-pause" class="btn btn-sm ${_aiPaused ? 'btn-gold' : 'btn-ghost'}" onclick="toggleAiPause()">
+    <button id="g-watch-pause" class="btn btn-sm ${_aiPaused ? '' : 'btn-ghost'}" onclick="toggleAiPause()">
       ${_aiPaused ? '▶ 再開' : '⏸ 停止'}
     </button>`;
 }
@@ -3858,22 +4882,29 @@ function aiChooseAction(p, lvl) {
     // 勝てそう（55%以上）なら神殿
     if (hasExp && currentCard && isMonster && combatPow >= monsterStr * 0.55) return 'temple';
     if (goodBuy) return 'port';
+    // ループ防止：他に選択肢がなければ神殿へ
+    if (hasExp && currentCard) return 'temple';
     return 'rest';
   }
   if (lvl === 'hard') {
-    if (madness >= 3) return 'rest';
+    // 狂気が多くても最大3ターンまでしか連続して回避しない（ループ防止）
+    if (madness >= 3 && !(hasExp && currentCard && combatPow >= monsterStr * 0.5)) return 'rest';
     // 勝てる、または近い（80%以上）なら神殿
     if (hasExp && currentCard && isMonster && combatPow >= monsterStr * 0.80) return 'temple';
     if (gold >= 3 && aiHasGoodPurchase(p, gold)) return 'port';
+    // ループ防止：他に選択肢がなければ神殿へ
+    if (hasExp && currentCard) return 'temple';
     return 'rest';
   }
   // strong
   const deckSize = p.deck.length + p.hand.length + p.discard.length;
-  if (madness >= 3 || (madness >= 2 && deckSize > 14)) return 'rest';
+  if (madness >= 4 || (madness >= 3 && deckSize > 14)) return 'rest'; // 閾値を1上げてループ防止
   if (hasExp && currentCard && canWin) return 'temple';
   if (gold >= 4 && aiHasGoodPurchase(p, gold)) return 'port';
   // 90%以上なら挑む
   if (hasExp && currentCard && isMonster && combatPow >= monsterStr * 0.90) return 'temple';
+  // ループ防止：他に選択肢がなければ神殿へ
+  if (hasExp && currentCard) return 'temple';
   return 'rest';
 }
 
@@ -3886,13 +4917,21 @@ function aiEstimateCombat(p) {
   if (weapons.length) pow += Math.max(...weapons.map(w => w.attack || 0));
   if (armors.length)  pow += Math.max(...armors.map(a => a.defense || 0));
   if (tools.length)   pow += Math.max(...tools.map(t => (t.attack || 0) + (t.defense || 0)));
+  // シナジーボーナス（探索者+装備の組み合わせ）
+  exps.forEach(e => {
+    if (e.synergy && p.hand.some(c => c.id === e.synergy.itemId)) pow += e.synergy.bonus;
+  });
+  // 強さ25のボスと戦う場合は対ボスボーナスを加算
+  const currentMonster = GameState.temple && GameState.temple.currentCard;
+  if (currentMonster && currentMonster.strength === 25) {
+    p.hand.forEach(item => { pow += (item.bossDefBonus || 0); });
+  }
   // ドロー枚数×2を戦闘力の期待値として加算（激動の日の+1ドローも含む）
   const ev = GameState.currentEvent;
   let totalDraw = p.hand.reduce((s, c) => s + (c.drawCards || 0), 0);
   if (ev && ev.id === 'ev_turbulent_day') totalDraw += 1;
   pow += totalDraw * 2;
-  const floor    = GameState.temple ? GameState.temple.floor : 1;
-  const fearBase = Math.min(floor * 2, 6);
+  const fearBase = 2; // 一律恐怖2
   let fearMod = 0;
   if (ev && ev.id === 'ev_monster_active') fearMod += 2;
   if (ev && ev.id === 'ev_turbulent_day')  fearMod += 2;
@@ -3900,12 +4939,13 @@ function aiEstimateCombat(p) {
   const guard    = tools.length ? Math.max(...tools.map(t => t.guard || 0)) : 0;
   const guardBonus = (ev && (ev.id === 'ev_spirit_guard' || ev.id === 'ev_turbulent_day')) ? 1 : 0;
   const effectiveGuard = guard > 0 ? guard + guardBonus : guard;
-  return pow - Math.max(0, Math.max(0, fearBase + fearMod) - effectiveGuard * 2);
+  const netFearAI = Math.max(0, fearBase + fearMod - effectiveGuard);
+  return pow - 2 * netFearAI;
 }
 
 function aiHasGoodPurchase(p, gold) {
   const cm = getPortCostMod();
-  return [...GameState.port.explorerPiles, ...GameState.port.portPiles, ...GameState.port.starterPiles]
+  return [...GameState.port.explorerPiles, ...GameState.port.portPiles]
     .some(pile => {
       const base = CARD_DB.map[pile.cardId];
       if (!base || !(pile.unlimited || pile.cards.length > 0)) return false;
@@ -3932,7 +4972,7 @@ function aiDoPort(p, lvl) {
   let buys = 1 + p.hand.reduce((s, c) => s + (c.portBuys || 0), 0)
            + (aiEv && aiEv.id === 'ev_supply_ship' ? 1 : 0);
   const costMod = aiEv ? (aiEv.id === 'ev_calm_port' ? -1 : aiEv.id === 'ev_storm_sea' ? 1 : 0) : 0;
-  const allPiles = () => [...GameState.port.explorerPiles, ...GameState.port.portPiles, ...GameState.port.starterPiles];
+  const allPiles = () => [...GameState.port.explorerPiles, ...GameState.port.portPiles];
   while (buys > 0 && gold > 0) {
     const card = aiBestPurchase(p, gold, lvl, allPiles(), costMod);
     if (!card) break;
@@ -4040,6 +5080,18 @@ function aiDoTemple(p, lvl) {
     autoAssignEquipment();
   }
   openTempleCard();
+  // AIの場合、pendingRelicは自動取得（人間プレイヤーのようなボタン操作が不要）
+  const pendingCr = TempleState.combatResult;
+  if (pendingCr && pendingCr.pendingRelic) {
+    const pending = pendingCr.pendingRelic;
+    p.acquired.push(pending);
+    GameState.gameOver = true; GameState.winner = p;
+    addLog(`🌟 ${p.name} が秘宝「${pending.name}」を獲得！ゲーム終了！`);
+    TempleState.combatResult = { type:'relic', card: pending };
+    TempleState.subPhase = 'done';
+    fxTimeout(() => showResultScreen(), 1800);
+    return; // endTurnは不要（ゲーム終了）
+  }
   // ev_chain_explore：勝利後に連続探索を試みる
   const chainEv = GameState.currentEvent;
   if (!GameState.gameOver && chainEv && chainEv.id === 'ev_chain_explore'
@@ -4144,10 +5196,12 @@ function aiDoRest(p, lvl) {
              || explorers[0];
     if (exp) {
       while (goldLeft >= aiTrainCost) {
+        const isFirstTrain = !exp.enhanced;
         goldLeft -= aiTrainCost;
         exp.attack = (exp.attack || 0) + aiTrainBonus;
+        if (isFirstTrain) exp.hp = (exp.hp || 0) + 1;
         exp.enhanced = (exp.enhanced || 0) + aiTrainBonus;
-        addLog(`🤖 ${p.name} → 「${exp.name}」訓練+${aiTrainBonus}（攻撃力 ${exp.attack}）`);
+        addLog(`🤖 ${p.name} → 「${exp.name}」訓練+${aiTrainBonus}${isFirstTrain ? '・体力+1' : ''}（攻撃力 ${exp.attack}）`);
       }
     }
   }
@@ -4155,6 +5209,7 @@ function aiDoRest(p, lvl) {
 
 /* ---- ターン終了 ---- */
 function endTurn() {
+  if (GameState.gameOver) { showResultScreen(); return; }
   const p = currentPlayer();
   p.discard.push(...p.hand);
   p.hand = [];
@@ -4182,7 +5237,11 @@ function endTurn() {
     np.hand = DeckUtils.draw(np, 8);
     addLog(`🌀 嵐のドロー：${np.name}の手札を引き直しました（${np.hand.length}枚）`);
   }
-  renderGameScreen();
+  if (isOnCombatScreen() || isOnPortScreen() || isOnRestScreen()) {
+    showScreen('game-screen');
+  } else {
+    renderGameScreen();
+  }
   const lb = document.getElementById('g-log-body');
   if (lb) lb.scrollTop = 0;
   if (!GameState.gameOver) scheduleAiTurn();
@@ -4204,7 +5263,8 @@ function enterTemplePhase() {
   // Auto-assign equipment
   autoAssignEquipment();
   addLog('海底神殿に入る — 装備を自動割り当てしました');
-  renderGameScreen();
+  showScreen('screen-combat');
+  renderCombatScreen();
 }
 
 function autoAssignEquipment() {
@@ -4247,7 +5307,7 @@ function templeDrawCards() {
       TempleState.assignments[exp.instanceId] = { weapon:null, armor:null, tool:null };
   });
   autoAssignEquipment();
-  renderGameScreen();
+  isOnCombatScreen() ? renderCombatScreen() : renderGameScreen();
   focusEl('temple-combat-btn');
 }
 
@@ -4277,7 +5337,7 @@ function getExplorerLoad(expInstanceId) {
 function templeSelectExplorer(expInstanceId) {
   if (TempleState.subPhase !== 'equip') return;
   TempleState.selectedExpId = TempleState.selectedExpId === expInstanceId ? null : expInstanceId;
-  renderTempleArea();
+  isOnCombatScreen() ? renderCombatBody() : renderTempleArea();
 }
 
 function templeAssignItem(itemInstanceId) {
@@ -4303,7 +5363,7 @@ function templeAssignItem(itemInstanceId) {
   assign[slot] = item;
   TempleState.assignments[TempleState.selectedExpId] = assign;
   TempleState.selectedExpId = null;
-  renderTempleArea();
+  isOnCombatScreen() ? renderCombatBody() : renderTempleArea();
   renderHandArea();
   focusEl('temple-combat-btn');
 }
@@ -4312,7 +5372,7 @@ function templeUnassignSlot(expInstanceId, slot) {
   if (TempleState.subPhase !== 'equip') return;
   const a = TempleState.assignments[expInstanceId];
   if (a) a[slot] = null;
-  renderTempleArea();
+  isOnCombatScreen() ? renderCombatBody() : renderTempleArea();
   renderHandArea();
 }
 
@@ -4336,8 +5396,7 @@ function calcTempleCombat() {
     if (synergyActive) power += exp.synergy.bonus;
   });
   power += bossBonus;
-  const floor = GameState.temple ? GameState.temple.floor : 1;
-  const darknessBase = Math.min(floor * 2, 6);
+  const darknessBase = 2; // 一律恐怖2
   // イベント補正
   let fearMod = 0;
   if (ev && ev.id === 'ev_monster_active') fearMod += 2;
@@ -4345,7 +5404,7 @@ function calcTempleCombat() {
   if (ev && ev.id === 'ev_explorer_spirit') fearMod -= 2;
   fearMod += (TempleState.extraFear || 0); // 連続探索ペナルティ
   const effectiveFear = Math.max(0, darknessBase + fearMod);
-  const penalty = Math.max(0, effectiveFear - guardTotal * 2);
+  const penalty = 2 * Math.max(0, effectiveFear - guardTotal);
   return { power, guardTotal, bossBonus, fearBase: effectiveFear, darknessBase, fearMod, penalty, netPower: power - penalty };
 }
 
@@ -4361,11 +5420,10 @@ function openTempleCard() {
   addLog(`カードをオープン：${card.name}`);
   if (card.category === 'treasure') {
     p.acquired.push(card);
-    p.discard.push(DeckUtils.makeInstance('mad_madness'));
     advanceTempleCard();
     TempleState.combatResult = { type:'treasure', card };
     TempleState.subPhase = 'done';
-    addLog(`✨ 宝物「${card.name}」を獲得！狂気1枚追加`);
+    addLog(`✨ 宝物「${card.name}」を獲得！`);
   } else if (card.category === 'relic') {
     p.acquired.push(card);
     TempleState.combatResult = { type:'relic', card };
@@ -4375,6 +5433,7 @@ function openTempleCard() {
   } else {
     const combat = calcTempleCombat();
     const won = combat.netPower >= card.strength;
+    const wasRelicDeckMonster = temple.currentIsRelicCard;
     let staysFaceUp = false;
     if (won) {
       p.discard.push(card);
@@ -4382,6 +5441,13 @@ function openTempleCard() {
       const bossBonusPart = combat.bossBonus > 0 ? `+対ボス${combat.bossBonus}` : '';
       addLog(`⚔ 勝利！${card.name} 強さ${card.strength} vs 戦闘力${combat.netPower}（基礎${combat.power - combat.bossBonus}${bossBonusPart}-恐怖${combat.penalty}）。狂気1枚追加`);
       advanceTempleCard();
+      // 秘宝デッキのモンスターを倒した場合、秘宝を保留（先にモンスター勝利を表示）
+      if (wasRelicDeckMonster && temple.currentCard && temple.currentCard.category === 'relic') {
+        const relicCard = temple.currentCard;
+        temple.currentCard = null; // 秘宝は pendingRelic として保持
+        TempleState.combatResult = { type:'monster', won:true, staysFaceUp:false, card, ...combat, monsterStrength: card.strength, pendingRelic: relicCard };
+        TempleState.subPhase = 'done';
+      }
     } else {
       p.discard.push(DeckUtils.makeInstance('mad_madness'));
       p.discard.push(DeckUtils.makeInstance('mad_madness'));
@@ -4397,23 +5463,54 @@ function openTempleCard() {
         if (temple.monsterDeck.length > 0) {
           temple.currentCard = temple.monsterDeck.pop();
           temple.currentIsRelicCard = false;
+          temple.currentFaceUp = false;
         } else if (temple.relicDeck.length > 0) {
           temple.currentCard = temple.relicDeck.pop();
           temple.currentIsRelicCard = true;
+          // 秘宝デッキのモンスターは即座に表側公開
+          temple.currentFaceUp = (temple.currentCard.category === 'monster');
         } else {
           temple.currentCard = null;
+          temple.currentFaceUp = false;
         }
-        temple.currentFaceUp = false;
         temple.floor++;
       }
     }
-    TempleState.combatResult = { type:'monster', won, staysFaceUp, card, ...combat, monsterStrength: card.strength };
-    TempleState.subPhase = 'done';
+    // relicの自動取得が発生した場合はcombatResultが既に設定されている
+    if (!TempleState.combatResult) {
+      TempleState.combatResult = { type:'monster', won, staysFaceUp, card, ...combat, monsterStrength: card.strength };
+      TempleState.subPhase = 'done';
+    }
   }
-  renderGameScreen();
-  triggerCombatEffects(TempleState.combatResult);
+  if (isOnCombatScreen()) {
+    renderCombatScreen();
+    initCombatResultAnimation(TempleState.combatResult);
+  } else {
+    renderGameScreen();
+    triggerCombatEffects(TempleState.combatResult);
+  }
   if (GameState.gameOver) {
-    fxTimeout(() => showResultScreen(), 2600);
+    // relic獲得かつ戦闘画面の場合は「凱旋する」ボタンで手動遷移するため自動遷移しない
+    const _gr = TempleState.combatResult;
+    if (!(_gr && _gr.type === 'relic' && isOnCombatScreen())) {
+      fxTimeout(() => showResultScreen(), 2600);
+    }
+  }
+}
+
+/* 秘宝デッキのボス討伐後、秘宝を手にする */
+function claimPendingRelic() {
+  const pending = TempleState.combatResult && TempleState.combatResult.pendingRelic;
+  if (!pending) return;
+  const p = currentPlayer();
+  p.acquired.push(pending);
+  GameState.gameOver = true; GameState.winner = p;
+  addLog(`🌟 秘宝「${pending.name}」を獲得！ゲーム終了！`);
+  TempleState.combatResult = { type:'relic', card: pending };
+  TempleState.subPhase = 'done';
+  if (isOnCombatScreen()) {
+    renderCombatScreen();
+    initCombatResultAnimation(TempleState.combatResult);
   }
 }
 
@@ -4422,14 +5519,17 @@ function advanceTempleCard() {
   if (temple.monsterDeck.length > 0) {
     temple.currentCard = temple.monsterDeck.pop();
     temple.currentIsRelicCard = false;
+    temple.currentFaceUp = false;
   } else if (temple.relicDeck.length > 0) {
     temple.currentCard = temple.relicDeck.pop();
     temple.currentIsRelicCard = true;
+    // 秘宝デッキのモンスターは即座に表側公開（全員に見える・居座る）
+    temple.currentFaceUp = (temple.currentCard.category === 'monster');
   } else {
     temple.currentCard = null;
     temple.currentIsRelicCard = false;
+    temple.currentFaceUp = false;
   }
-  temple.currentFaceUp = false;
   temple.floor++;
 }
 
@@ -4441,26 +5541,28 @@ function showCardTooltip(event, cardId, instanceId) {
 
   const catLabel = { starter:'スターター', port:'港カード', explorer:'探索者',
     monster:'モンスター', treasure:'宝物', relic:'秘宝', madness:'狂気' };
+  // 統一順序: buyCost → goldValue → attack → drawCards(🎴) → defense → hp → weight → strength → vp → guard
   const stats = [
-    card.buyCost   ? `コスト: ${card.buyCost}`   : '',
-    card.goldValue ? `金貨値: ${card.goldValue}`  : '',
-    card.attack    ? `攻撃: ${card.attack}`       : '',
-    card.defense   ? `防御: ${card.defense}`      : '',
-    card.hp        ? `体力: ${card.hp}`           : '',
-    card.weight    ? `重さ: ${card.weight}`       : '',
-    card.strength  ? `強さ: ${card.strength}`     : '',
-    card.vp        ? `勝利点: ${card.vp}`         : '',
-    card.guard     ? `守護: ${card.guard}`        : '',
+    card.buyCost   ? `💴 コスト: ${card.buyCost}`       : '',
+    card.goldValue ? `💰 金貨値: ${card.goldValue}`      : '',
+    card.attack    ? `⚔ 攻撃: ${card.attack}`           : '',
+    card.drawCards ? `🎴 追加ドロー: +${card.drawCards}` : '',
+    card.defense   ? `🛡 防御: ${card.defense}`          : '',
+    card.hp        ? `❤ 体力: ${card.hp}`               : '',
+    card.weight    ? `⚖ 重さ: ${card.weight}`           : '',
+    card.strength  ? `💪 強さ: ${card.strength}`         : '',
+    card.vp        ? `★ 勝利点: ${card.vp}`             : '',
+    card.guard     ? `👁 守護: ${card.guard}`            : '',
   ].filter(Boolean);
   const effs = [];
-  if (card.drawCards  > 0) effs.push(`神殿探索で${card.drawCards}枚追加ドロー`);
+  if (card.drawCards  > 0) effs.push(`神殿探索フェーズでカードを${card.drawCards}枚追加ドロー`);
   if (card.portBuys   > 0) effs.push(`港で追加${card.portBuys}枚購入可`);
   if (card.removeMadness)  effs.push('港・休息フェーズで狂気を全て除外');
   if (card.canUseGun)      effs.push('火器使用可能');
   if (card.guard > 0 && card.category !== 'monster')
-    effs.push(`守護${card.guard}（恐怖-${card.guard * 2}）`);
+    effs.push(`守護${card.guard}：恐怖ペナルティを最大${card.guard * 2}軽減`);
   if (card.bossDefBonus > 0) effs.push(`対ボス戦闘力+${card.bossDefBonus}`);
-  if (card.specialVP === '1perMadness') effs.push('狂気1枚につき勝利点+1');
+  if (card.specialVP === '1per2Madness') effs.push('狂気2枚につき勝利点+1');
   if (card.category === 'relic') effs.push('秘宝獲得で即ゲーム終了');
   // シナジー（探索者カード）
   if (card.synergy) effs.push(`⚡ シナジー: ${card.synergy.label}`);
@@ -4474,45 +5576,30 @@ function showCardTooltip(event, cardId, instanceId) {
   const p = GameState.players && GameState.players[GameState.currentPlayerIndex];
   const inTempleEquip = p && GameState.phase === 'temple' && TempleState.subPhase === 'equip';
 
-  if (card.subtype === 'person') {
-    // 探索者：装備スロット説明 + 現在の装備状態
-    const maxW = card.hp || 0;
-    const slots = ['武器', '防具', '道具'];
-    if (card.canUseGun) slots.push('火器');
-    extraHtml += `<div class="tip-sep"></div>`;
-    extraHtml += `<div class="tip-compat">装備スロット: ${slots.join('・')} 各1<br>重さ上限: ${maxW}</div>`;
-    if (inTempleEquip && instanceId) {
-      const asgn = TempleState.assignments[instanceId];
-      if (asgn) {
-        const parts = [
-          asgn.weapon ? `武器: ${asgn.weapon.name}` : '',
-          asgn.armor  ? `防具: ${asgn.armor.name}`  : '',
-          asgn.tool   ? `道具: ${asgn.tool.name}`   : '',
-        ].filter(Boolean);
-        if (parts.length)
-          extraHtml += `<div class="tip-equipped">▶ ${parts.join(' / ')}</div>`;
-        else
-          extraHtml += `<div class="tip-unequipped">未装備</div>`;
-      }
-    }
-
-  } else if (card.subtype === 'weapon' || card.subtype === 'armor' || card.subtype === 'tool' || card.subtype === 'gun') {
+  if (card.subtype === 'weapon' || card.subtype === 'armor' || card.subtype === 'tool' || card.subtype === 'gun') {
     // 装備品：装備できる探索者 + 装備中の探索者
     extraHtml += `<div class="tip-sep"></div>`;
     const slotLabel = card.subtype === 'weapon' || card.subtype === 'gun' ? '武器/火器スロット'
       : card.subtype === 'armor' ? '防具スロット' : '道具スロット';
     extraHtml += `<div class="tip-compat" style="color:var(--text3);font-size:.63rem;">${slotLabel} / 重さ: ${card.weight || 0}</div>`;
-    if (p && p.hand) {
-      const exps = p.hand.filter(c => {
-        if (c.subtype !== 'person') return false;
-        if ((card.weight || 0) > (c.hp || 0)) return false;
-        if (card.subtype === 'gun' && !c.canUseGun) return false;
+    {
+      // カードDB全体から装備可能な探索者タイプを列挙（手札ではなく種別で説明）
+      const nameAbbr = {
+        '初級探索者':'初級', '支援型探索者':'支援', '精神科医探索者':'精神科医',
+        '格闘家探索者':'格闘家', 'ベテラン探索者':'ベテラン', '歴戦探索者':'歴戦',
+      };
+      const allExplorers = Object.values(CARD_DB.map).filter(c => c.subtype === 'person');
+      const compatible = allExplorers.filter(exp => {
+        if ((card.weight || 0) > (exp.hp || 0)) return false;
+        if (card.subtype === 'gun' && !exp.canUseGun) return false;
         return true;
       });
-      if (exps.length > 0)
-        extraHtml += `<div class="tip-compat">装備可: ${exps.map(c => c.name).join('、')}</div>`;
-      else if (p.hand.some(c => c.subtype === 'person'))
-        extraHtml += `<div class="tip-nocompat">装備できる探索者なし</div>`;
+      const compatStr = compatible.length === allExplorers.length
+        ? '全ての探索者'
+        : compatible.length === 0
+          ? 'なし'
+          : compatible.map(e => nameAbbr[e.name] || e.name).join('・');
+      extraHtml += `<div class="tip-compat">装備可: ${compatStr}</div>`;
     }
     // 装備中か確認
     if (inTempleEquip && instanceId) {
@@ -4537,12 +5624,12 @@ function showCardTooltip(event, cardId, instanceId) {
     (effs.length  ? `<div class="tip-effs">${effs.map(e=>`• ${e}`).join('<br>')}</div>` : '') +
     extraHtml;
 
-  const r = event.currentTarget.getBoundingClientRect();
   const W = 210;
-  let left = r.left + r.width / 2 - W / 2;
-  left = Math.max(4, Math.min(left, window.innerWidth - W - 4));
-  const above = r.top > 250;
-  tip.style.cssText = `display:block;left:${left}px;top:${above ? r.top - 8 : r.bottom + 8}px;transform:${above ? 'translateY(-100%)' : 'none'};width:${W}px`;
+  let left = event.clientX + 16;
+  let top  = event.clientY + 16;
+  if (left + W > window.innerWidth  - 4) left = event.clientX - W - 16;
+  if (top  + 340 > window.innerHeight)   top  = Math.max(4, window.innerHeight - 344);
+  tip.style.cssText = `display:block;left:${Math.max(4,left)}px;top:${top}px;width:${W}px;max-height:${window.innerHeight - top - 8}px;overflow-y:auto`;
 }
 
 function hideCardTooltip() {
@@ -4575,10 +5662,10 @@ function calcFinalVP(player) {
   // 秘宝VP（輝くトラペゾヘドロン特殊処理）
   const relics = allCards.filter(c => c.category === 'relic');
   relics.forEach(relic => {
-    if (relic.specialVP === '1perMadness') {
+    if (relic.specialVP === '1per2Madness') {
       const madnessCount = allCards.filter(c => c.category === 'madness').length;
-      const relicVP = (relic.vp || 0) + madnessCount;
-      breakdown.push({ label: relic.name, vp: relicVP, detail: `基礎${relic.vp}+狂気${madnessCount}枚` });
+      const relicVP = (relic.vp || 0) + Math.floor(madnessCount / 2);
+      breakdown.push({ label: relic.name, vp: relicVP, detail: `基礎${relic.vp}+狂気${madnessCount}枚(÷2)` });
       vp += relicVP;
     } else {
       if ((relic.vp || 0) > 0) {
