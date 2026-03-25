@@ -10,7 +10,6 @@
 
 ## ファイル構成
 
-```
 OceanMonument-HiddenTreasure/
 ├── index.html              ← 成果物（単一ファイルで完結）
 ├── README.md               ← 本ファイル
@@ -39,7 +38,6 @@ OceanMonument-HiddenTreasure/
         ├── 宝剣.jpg
         ├── 銀の鍵.jpg
         └── 輝くトラペゾヘドロン.jpg
-```
 
 ---
 
@@ -358,7 +356,6 @@ OceanMonument-HiddenTreasure/
 ## 技術方針
 
 | 項目 | 方針 |
-|------|------|
 | 実装形式 | 単一 HTML ファイル（CSS・JS インライン） |
 | 外部依存 | Google Fonts のみ（CDN）|
 | フレームワーク | バニラ JS（フレームワーク不使用） |
@@ -370,13 +367,11 @@ OceanMonument-HiddenTreasure/
 
 ## 実装順序
 
-```
 Step 1 → Step 2 → Step 4 → Step 5 → Step 6 → Step 7
     ↓
 Step 3（図鑑）→ Step 8（AI）→ Step 9（結果）
     ↓
 Step 10（説明書）→ Step 11（演出）→ Step 12（調整）
-```
 
 > Step 1〜7 で「人間 1 人でプレイ可能な最小動作版」が完成します。
 > Step 8 以降で AI・演出・仕上げを追加します。
